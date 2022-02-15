@@ -1,0 +1,56 @@
+<?php
+/**
+ * Template Name: Full Width Page with Hero
+ *
+ * Template for displaying a page without sidebar even if a sidebar widget is published and a hero image for the entry header
+ *
+ * @package Understrap
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+get_header();
+$container = get_theme_mod( 'understrap_container_type' );
+$subtitle = get_field('subtitle_page');
+
+?>
+
+<div class="wrapper" id="full-width-page-hero-wrapper">
+    
+    <header class="entry-header">
+		<div class="entry-header-wrapper" style="background-image: url(<?php the_post_thumbnail_url(); ?>); background-size: cover; background-repeat: no-repeat; background-position: center;">
+			<div class="entry-title-wrapper">
+				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+				<?php echo (!empty($subtitle)) ? "<div class='entry-subtitle'>" . $subtitle . "</div>" : ''; ?>
+			</div>
+		</div>
+    </header><!-- .entry-header -->
+
+	<div class="<?php echo esc_attr( $container ); ?>" id="content">
+
+		<div class="row">
+
+			<div class="col-md-12 content-area" id="primary">
+
+				<main class="site-main" id="main" role="main">
+
+					<?php
+					while ( have_posts() ) {
+						the_post();
+						get_template_part( 'loop-templates/content', 'page' );
+					}
+					?>
+
+				</main><!-- #main -->
+
+			</div><!-- #primary -->
+
+		</div><!-- .row end -->
+
+	</div><!-- #content -->
+
+</div><!-- #full-width-page-wrapper -->
+
+<?php
+get_footer();
