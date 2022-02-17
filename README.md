@@ -24,7 +24,14 @@ This is a child theme of the Understrap Starter Theme => https://github.com/unde
 To work and compile your Sass files on the fly start:
 `npm run watch`
 
+# Compiling
+`npm run dist` will compile JS and CSS for production use.
+
 # Overriding Default Styles and Scripts
 Add your own CSS styles to /src/sass/theme/_child_theme.scss or import your own files into /src/sass/theme/_child-theme.scss
 
 To overwrite Bootstrap's or Understrap's base variables just add your own value to:/src/sass/theme/_child_theme_variables.scss
+
+# Plugin
+
+This child theme is designed to work along with the included customizations plugin. Zip the `php` file in `/plugins`, then upload it via the Plugins page of the WordPress admin dashboard.
