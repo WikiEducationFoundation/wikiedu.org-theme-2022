@@ -112,6 +112,7 @@ add_action( 'init', 'register_testimonials_post_type' );
 function testimonials_shortcode( $atts ) {
     $a = shortcode_atts( array(
         'nposts' => '3',
+        'category' => null
     ), $atts );
 
     $html = '<div class="row">';
@@ -127,8 +128,9 @@ function testimonials_shortcode( $atts ) {
     $html .= '<div class="carousel-inner">';
 
     $args = array(
-        'numberposts' => 3,
-        'post_type' => 'testimonials'
+        'numberposts' => $a['nposts'],
+        'post_type' => 'testimonials',
+        'meta_query' => array( array( 'key' => 'category', 'value' => $a['category']))
     );
 
     $testimonials = get_posts( $args );
