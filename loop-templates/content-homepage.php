@@ -88,7 +88,7 @@ defined( 'ABSPATH' ) || exit;
     <img class="latest_posts__sstones" src="<?php echo get_stylesheet_directory_uri(); ?>/src/img/stepping+stones2.svg" alt="">
 </section>
 <section class="featured_courses">
-    <div class="container">        
+    <div class="container">
             <?php
                 $args = array(
                     'numberposts' => 3,
@@ -104,7 +104,7 @@ defined( 'ABSPATH' ) || exit;
                         <?php echo get_the_post_thumbnail($lcourse->ID, 'full'); ?>
                     </div>
                     <div class="col-md-6">
-                        <h2 class="featured_courses__category">Wikipedia</h2>
+                        <h2 class="featured_courses__category"><?php echo the_field('category', $lcourse->ID) ?></h2>
                         <h3 class="featured_courses__title"><?php echo $lcourse->post_title ?></h3>
                         <p class="featured_courses__excerpt"><?php echo $lcourse->post_excerpt ?></p>
                         <a class="btn btn-secondary featured_courses__btn" href="<?php echo get_permalink($lcourse->ID) ?>">LEARN MORE</a>
@@ -154,7 +154,7 @@ defined( 'ABSPATH' ) || exit;
     </div>
     <img class="featured_content__sstones" src="<?php echo get_stylesheet_directory_uri(); ?>/src/img/stepping+stones3.svg" alt="">
 </section>
-<section class="faq">
+<!-- <section class="faq">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -183,6 +183,6 @@ defined( 'ABSPATH' ) || exit;
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <?php the_content();
