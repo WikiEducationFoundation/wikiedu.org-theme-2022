@@ -53,7 +53,7 @@ defined( 'ABSPATH' ) || exit;
 		
 		<section class="course__offering">
 			<div class="container">
-				<h2 class="course__offering-title">Course Offering</h2>
+				<h2 class="course__offering-title">Course Offerings</h2>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="course__offering-wrapper">
