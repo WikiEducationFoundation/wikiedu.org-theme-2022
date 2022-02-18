@@ -111,7 +111,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="container">
 				<h2 class="courses__carousel-title">How our courses inspire scholars and scientists</h2>
 
-				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="10000">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
 							<img class="d-block courses__carousel_image" src="<?php the_field('carousel_image_1') ?>" alt="First slide">

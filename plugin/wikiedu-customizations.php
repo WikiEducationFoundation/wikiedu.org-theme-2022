@@ -117,7 +117,7 @@ function testimonials_shortcode( $atts ) {
 
     $html = '<div class="row">';
     $html .= '<div class="col-sm-12">';
-    $html .= '<div id="myCarousel" class="carousel slide" data-ride="carousel">';
+    $html .= '<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">';
     //$html .= '<!-- Carousel indicators -->';
     //$html .= '<ol class="carousel-indicators">';
     //$html .= '<li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
