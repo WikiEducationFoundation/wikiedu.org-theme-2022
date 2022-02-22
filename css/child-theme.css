@@ -15354,17 +15354,6 @@ p, li {
   font-size: 18px;
   font-weight: 600;
 }
-#index-wrapper .wp-caption-text, #archive-wrapper .wp-caption-text {
-  font-size: smaller;
-}
-#index-wrapper figure, #archive-wrapper figure {
-  padding: 3px;
-  border: 1px solid #e1e2ef;
-}
-#index-wrapper figcaption, #archive-wrapper figcaption {
-  color: #787882;
-  padding: 5px;
-}
 #index-wrapper nav, #archive-wrapper nav {
   width: 100%;
 }
@@ -15376,6 +15365,20 @@ p, li {
 }
 #index-wrapper nav .pagination .page-item.active .page-link, #archive-wrapper nav .pagination .page-item.active .page-link {
   background-color: #60AB91;
+}
+
+.wp-caption-text {
+  font-size: smaller;
+}
+
+figure {
+  padding: 3px;
+  border: 1px solid #e1e2ef;
+}
+
+figcaption {
+  color: #787882;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 960px) {

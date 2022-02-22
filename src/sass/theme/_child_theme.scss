@@ -913,19 +913,6 @@ p, li {
         }
     }
 
-    .wp-caption-text {
-        font-size: smaller;
-    }
-
-    figure {
-        padding: 3px;
-        border: 1px solid #e1e2ef;
-    }
-    figcaption {
-        color: #787882;
-        padding: 5px;
-    }
-
     nav {
         width: 100%;
 
@@ -945,6 +932,19 @@ p, li {
             }
         }
     }
+}
+
+.wp-caption-text {
+    font-size: smaller;
+}
+
+figure {
+    padding: 3px;
+    border: 1px solid #e1e2ef;
+}
+figcaption {
+    color: #787882;
+    padding: 5px;
 }
 
 @media only screen and (max-width: 960px) {
