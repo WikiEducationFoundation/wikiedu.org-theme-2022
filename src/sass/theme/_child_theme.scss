@@ -1563,8 +1563,11 @@ figcaption {
     }
     .bio-image {
         @extend .col-sm-6;
-        border: none;
     }
+}
+
+.bio-image {
+    border: none;
 }
 
 .bio.board {
