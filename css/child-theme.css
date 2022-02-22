@@ -15863,6 +15863,10 @@ figcaption {
 .bio.staff:first-child {
   margin-top: 0;
 }
+.bio.staff .bio-image {
+  border: none;
+}
+
 .bio.board {
   width: 33%;
   float: left;
