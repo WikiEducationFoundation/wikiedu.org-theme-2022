@@ -511,6 +511,11 @@ p, li {
     padding-top: 87px;
     padding-bottom: 87px;
 
+    .testimonial blockquote {
+        color: #464652;
+        font-size: 24px;
+    }
+
     .carousel-inner {
         overflow: unset;
     }
@@ -549,7 +554,6 @@ p, li {
     .carousel .testimonial {
         &__description {
             font-size: 25px;
-            padding-top: 20px;
         }
 
         &__author--name {

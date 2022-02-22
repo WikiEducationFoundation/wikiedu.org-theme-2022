@@ -15024,6 +15024,10 @@ p, li {
   padding-top: 87px;
   padding-bottom: 87px;
 }
+.testimonials .testimonial blockquote, .courses__carousel .testimonial blockquote {
+  color: #464652;
+  font-size: 24px;
+}
 .testimonials .carousel-inner, .courses__carousel .carousel-inner {
   overflow: unset;
 }
@@ -15055,7 +15059,6 @@ p, li {
 }
 .testimonials .carousel .testimonial__description, .courses__carousel .carousel .testimonial__description {
   font-size: 25px;
-  padding-top: 20px;
 }
 .testimonials .carousel .testimonial__author--name, .courses__carousel .carousel .testimonial__author--name {
   font-size: 24px;
