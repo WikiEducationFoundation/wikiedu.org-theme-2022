@@ -15453,6 +15453,9 @@ figcaption {
   font-size: 16px;
   font-weight: 600;
 }
+#single-wrapper .site-main .blog__post-date a {
+  color: #60AB91;
+}
 #single-wrapper .site-main .wp-post-image {
   width: 100%;
   -o-object-fit: cover;
