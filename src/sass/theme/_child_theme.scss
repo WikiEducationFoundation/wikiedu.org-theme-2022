@@ -898,7 +898,8 @@ p, li {
                 margin-bottom: 40px;
 
                 .wp-post-image {
-                    min-height: 264px;
+                    height: 300px;
+                    max-width: 400px;
                     object-fit: cover;
                 }
                 

@@ -15344,7 +15344,8 @@ p, li {
   margin-bottom: 40px;
 }
 #index-wrapper .site-main .blog_posts__loop article .wp-post-image, #archive-wrapper .site-main .blog_posts__loop article .wp-post-image {
-  min-height: 264px;
+  height: 300px;
+  max-width: 400px;
   -o-object-fit: cover;
   object-fit: cover;
 }
