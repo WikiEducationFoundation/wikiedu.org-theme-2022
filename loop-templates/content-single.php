@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<div class="blog__post-date"><?php the_date(); ?><span> / </span><?php the_author() ?></div>
+	<div class="blog__post-date"><?php the_date(); ?><span> / </span><a href="<?= get_author_posts_url(get_the_author_meta('ID')); ?>" rel="author" class="fn"><?php the_author() ?></a></div>
 
 	<div class="entry-content">
 
