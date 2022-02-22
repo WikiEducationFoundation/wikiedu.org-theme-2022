@@ -15863,7 +15863,7 @@ figcaption {
 .bio.staff:first-child {
   margin-top: 0;
 }
-.bio-image {
+.bio.staff .bio-image figure {
   border: none;
 }
 
