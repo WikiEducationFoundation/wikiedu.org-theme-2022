@@ -15354,14 +15354,14 @@ p, li {
   font-size: 18px;
   font-weight: 600;
 }
-#index-wrapper .site-main .blog_posts__loop article .wp-caption-text, #archive-wrapper .site-main .blog_posts__loop article .wp-caption-text {
+#index-wrapper .wp-caption-text, #archive-wrapper .wp-caption-text {
   font-size: smaller;
 }
-#index-wrapper .site-main .blog_posts__loop article figure, #archive-wrapper .site-main .blog_posts__loop article figure {
+#index-wrapper figure, #archive-wrapper figure {
   padding: 3px;
   border: 1px solid #e1e2ef;
 }
-#index-wrapper .site-main .blog_posts__loop article figcaption, #archive-wrapper .site-main .blog_posts__loop article figcaption {
+#index-wrapper figcaption, #archive-wrapper figcaption {
   color: #787882;
   padding: 5px;
 }
