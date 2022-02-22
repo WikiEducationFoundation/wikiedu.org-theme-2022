@@ -15061,13 +15061,16 @@ p, li {
   font-size: 25px;
 }
 .testimonials .carousel .testimonial__author--name, .courses__carousel .carousel .testimonial__author--name {
-  font-size: 24px;
+  font-size: 26px;
   color: #686FAF;
   font-weight: 600;
   padding-left: 30px;
 }
 .testimonials .carousel .testimonial__author--company, .courses__carousel .carousel .testimonial__author--company {
   padding-left: 30px;
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.2;
 }
 .testimonials .carousel .testimonial p, .courses__carousel .carousel .testimonial p {
   color: #464652;
