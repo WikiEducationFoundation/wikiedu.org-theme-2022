@@ -946,13 +946,15 @@ p, li {
     font-size: smaller;
 }
 
-figure {
-    padding: 3px;
-    border: 1px solid #e1e2ef;
+figure img {
+    background: linear-gradient(140deg,$primary 50%,$secondary 50%);
+    padding: 4px;
 }
+
 figcaption {
     color: #787882;
     padding: 5px;
+    border-bottom: 1px solid #e1e2ef
 }
 
 @media only screen and (max-width: 960px) {
@@ -1159,7 +1161,6 @@ figcaption {
                 margin-bottom: 40px;
 
                 .wp-post-image {
-                    padding: 1rem;
                     position: relative;
                     background: linear-gradient(140deg,$primary 50%,$secondary 50%);
                     padding: 4px;
