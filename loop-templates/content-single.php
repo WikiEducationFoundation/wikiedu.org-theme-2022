@@ -30,7 +30,7 @@ defined( 'ABSPATH' ) || exit;
 
 	</footer><!-- .entry-footer -->
 
-	<div class="blog__author">
+	<!-- <div class="blog__author">
 		<div class="blog__author-avatar">
 			<?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?>
 		</div>
@@ -38,6 +38,6 @@ defined( 'ABSPATH' ) || exit;
 			<h3 class="blog__author-name"><?php the_author_meta('display_name'); ?></h3>
 			<p class="blog__author-bio"><?php the_author_meta('description'); ?></p>
 		</div>
-	</div>
+	</div> -->
 
 </article><!-- #post-## -->
