@@ -31,3 +31,13 @@ function add_child_theme_textdomain() {
     load_child_theme_textdomain( 'understrap-child', get_stylesheet_directory() . '/languages' );
 }
 add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
+
+// Override the excerpt "Read More" format from understrap's inc/extras.php
+// This format matches the previous one from Wiki Education's 2015 theme:
+// https://github.com/WikiEducationFoundation/WikiEduWebsite2015/blob/master/lib/extras.php#L31
+function understrap_all_excerpts_get_more_link( $post_excerpt ) {
+    if ( ! is_admin() ) {
+            $post_excerpt = $post_excerpt . ' ... <a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">Continued</a>';
+    }
+    return $post_excerpt;
+}
