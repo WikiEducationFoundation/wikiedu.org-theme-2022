@@ -196,3 +196,33 @@ function add_mobile_close_button($items, $args) {
 }
 add_filter('wp_nav_menu_items', 'add_mobile_close_button', 10, 2);
 
+
+
+
+
+
+/* Featured Highlights Shortcode */
+function featured_highlights_shortcode( $atts ) {
+    // Convert a string of comma separated IDs to an array, then get posts.
+    $id_array = explode(',', $atts['ids']);
+    $args = array(
+        'post__in' => $id_array
+    );
+    $featured_highlights = get_posts( $args );
+
+    // Put each post into the same format as on the home page.
+    $html = '<div class="featured_content row">';
+    foreach ($featured_highlights as $featured) :
+        $html .= '  <div class="col-md-4">';
+        $html .= '      <a class="featured_content__link" href="' . get_permalink($featured->ID) . '">' . get_the_post_thumbnail($featured->ID, 'full') . '</a>';
+        $html .= '      <small class="featured_content__date">' . date('M d Y', strtotime( $featured->post_date )) . '</small>';
+        $html .= '      <a class="featured_content__link" href="' . get_permalink($featured->ID) . '"><h3 class="featured_content__ltitle">' . $featured->post_title . '</h3></a>';
+        $html .= '      <a class="featured_content__link" href="' . get_permalink($featured->ID) . '">Read More</a>';		
+        $html .= '  </div>';
+    endforeach;
+    $html .= '</div>';
+
+    return $html;
+}
+
+add_shortcode( 'featured_highlights', 'featured_highlights_shortcode' );
