@@ -647,9 +647,9 @@ p, li {
     }
 
     .wp-post-image {
-        min-height: 257px;
+        height: 300px;
         object-fit: cover;
-        margin-top: 30px;
+        width: 100%;
     }
 
     &__ltitle {

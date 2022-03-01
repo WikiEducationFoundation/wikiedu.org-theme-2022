@@ -15138,10 +15138,10 @@ p, li {
   padding-bottom: 50px;
 }
 .featured_content .wp-post-image {
-  min-height: 257px;
+  height: 300px;
   -o-object-fit: cover;
   object-fit: cover;
-  margin-top: 30px;
+  width: 100%;
 }
 .featured_content__ltitle {
   font-size: 26px;
