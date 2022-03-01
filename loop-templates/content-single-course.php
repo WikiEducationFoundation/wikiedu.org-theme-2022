@@ -30,10 +30,10 @@ defined( 'ABSPATH' ) || exit;
 					<div class="course__body-content"><?php the_field('course_class_meeting_time'); ?></div>
 					<h3 class="course__body-heading">Application Deadline</h3>
 					<div class="course__body-content"><?php the_field('course_application_deadline'); ?></div>
-					<h3 class="course__body-heading">Time Commitment per week</h3>
+					<!-- <h3 class="course__body-heading">Time Commitment per week</h3>
 					<div class="course__body-content"><?php the_field('course_time_commitment_per_week'); ?></div>
 					<h3 class="course__body-heading">Goal</h3>
-					<div class="course__body-content"><?php the_field('course_goal'); ?></div>
+					<div class="course__body-content"><?php the_field('course_goal'); ?></div> -->
 				</div>
 			</div>
 		</div>
