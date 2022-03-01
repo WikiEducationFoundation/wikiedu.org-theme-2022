@@ -28,7 +28,8 @@ defined( 'ABSPATH' ) || exit;
 					<?php
 					$args = array(
 						'numberposts' => 3,
-						'post_type' => 'courses'
+						'post_type' => 'courses',
+						'order' => 'ASC'
 					);
 
 					$open_courses = get_posts( $args );
