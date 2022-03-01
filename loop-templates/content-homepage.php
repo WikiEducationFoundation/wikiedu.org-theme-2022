@@ -100,10 +100,10 @@ defined( 'ABSPATH' ) || exit;
 
             <?php foreach ($latest_courses as $lcourse) { ?>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <?php echo get_the_post_thumbnail($lcourse->ID, 'full'); ?>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <h2 class="featured_courses__category"><?php echo the_field('category', $lcourse->ID) ?></h2>
                         <h3 class="featured_courses__title"><?php echo $lcourse->post_title ?></h3>
                         <p class="featured_courses__excerpt"><?php echo $lcourse->post_excerpt ?></p>
