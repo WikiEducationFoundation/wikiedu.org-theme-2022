@@ -96,7 +96,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 				<div class="search-icon" id="search-icon"><i class="fa fa-search"></i></div>
 				<div class="search-wrapper" id="search-wrapper">
 					<form role="search" method="get" class="search" action="<?= esc_url(home_url('/')); ?>">
-      					<input type="text" value="<?= get_search_query(); ?>" name="s" placeholder="Search Wikiedu.org..." id="input_search">
+      					<input type="text" value="" name="s" placeholder="Search Wikiedu.org..." id="input_search">
       					<button type="submit" id="input_submit"><i class="fa fa-search"></i></button>
 						<div class="search-close" id="search-close"><i class="fa fa-close"></i></div>
     				</form>
