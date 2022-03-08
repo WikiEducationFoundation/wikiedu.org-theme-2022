@@ -130,6 +130,7 @@ function testimonials_shortcode( $atts ) {
     $args = array(
         'numberposts' => $a['nposts'],
         'post_type' => 'testimonials',
+        'order' => 'ASC',
         'meta_query' => array( array( 'key' => 'category', 'value' => $a['category']))
     );
 
@@ -195,11 +196,6 @@ function add_mobile_close_button($items, $args) {
     }
 }
 add_filter('wp_nav_menu_items', 'add_mobile_close_button', 10, 2);
-
-
-
-
-
 
 /* Featured Highlights Shortcode */
 function featured_highlights_shortcode( $atts ) {
