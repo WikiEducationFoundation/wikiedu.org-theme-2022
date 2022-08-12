@@ -181,6 +181,12 @@ defined( 'ABSPATH' ) || exit;
 										<p><?php the_field('impact_stats_slider_description_6') ?></p>
 									</div>
 								</div>
+								<div class="carousel-item">
+									<div class="carousel-caption d-md-block">
+										<h5><?php the_field('impact_stats_slider_title_7') ?></h5>
+										<p><?php the_field('impact_stats_slider_description_7') ?></p>
+									</div>
+								</div>
 							</div>
 							<div class="carousel-control">
 								<a class="carousel-control-prev" href="#carouselExampleCaptions" data-slide="prev">
