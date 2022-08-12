@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 						<p class="impact-intro__description"><?php the_field('impact_intro_description') ?></p>
 					</div>
 					<div class="col-md-6">
-						<img src="<?php the_field('impact_intro_image') ?>" alt="">
+						<img class="green-purple-border" src="<?php the_field('impact_intro_image') ?>" alt="">
 					</div>
 				</div>
 			</div>
