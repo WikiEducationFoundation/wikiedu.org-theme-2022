@@ -92,10 +92,10 @@ defined( 'ABSPATH' ) || exit;
 				</div>
 			</div>
 		</section>
-		<section class="impact-stats__boxes">
+		<section class="impact-stats__how">
 			<div class="container">
-				<h2 class="impact-stats__boxes-title"><?php the_field('impact_how_heading') ?></h3>
-				<p class="impact-stats__boxes-subtitle"><?php the_field('impact_how_description') ?></p>
+				<h2 class="impact-stats__how-title"><?php the_field('impact_how_heading') ?></h3>
+				<p class="impact-stats__how-description"><?php the_field('impact_how_description') ?></p>
 			</div>
 		</section>
 		<section class="impact-stats__boxes">

@@ -1767,6 +1767,22 @@ figcaption {
             }
         }
 
+        &__how {
+            padding-top: 80px;
+            position: relative;
+
+            &-title {
+                font-size: 48px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+            &-description {
+                font-size: 18px;
+                margin-bottom: 40px;
+            }
+        }
+
         &__boxes {
             padding-top: 80px;
             padding-bottom: 80px;
