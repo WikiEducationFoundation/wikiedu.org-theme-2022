@@ -16264,6 +16264,7 @@ figcaption {
   font-size: 18px;
   margin-bottom: 40px;
   max-width: 600px;
+  margin: auto;
 }
 #impact-page-wrapper .impact-stats__boxes {
   padding-top: 80px;
