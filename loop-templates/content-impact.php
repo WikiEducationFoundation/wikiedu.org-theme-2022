@@ -12,7 +12,6 @@ defined( 'ABSPATH' ) || exit;
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
 	<div class="entry-content">
-
 		<section class="impact-intro">
 			<div class="container">
 				<div class="row">
@@ -89,6 +88,19 @@ defined( 'ABSPATH' ) || exit;
 							<div class="impact-stats__percentage-number-2"><?php the_field('impact_stats_percentage_number_2') ?></div>
 							<img class="impact-stats__percentage-image" src="<?php the_field('impact_stats_percentage_image_2') ?>" alt="">
 						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="impact-how">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="impact-how__heading"><?php the_field('impact_how_heading') ?></h3>
+						<p class="impact-how__description"><?php the_field('impact_how_description') ?></p>
+					</div>
+					<div class="col-md-6">
+						<img src="<?php the_field('impact_how_image') ?>" alt="">
 					</div>
 				</div>
 			</div>
