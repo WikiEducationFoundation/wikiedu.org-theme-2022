@@ -15606,6 +15606,14 @@ figure img {
   padding: 4px;
 }
 
+.green-purple-border {
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(140deg, #686FAF 50%, #60AB91 50%);
+  padding: 4px;
+  border-radius: 10px;
+}
+
 figcaption {
   color: #787882;
   padding: 5px;
