@@ -16191,7 +16191,7 @@ figcaption {
   padding-bottom: 20px;
   color: #686FAF;
 }
-#impact-page-wrapper .impact-stats__card-wrapper-1 {
+impact-stats__card-count-link #impact-page-wrapper .impact-stats__card-wrapper-1 {
   background-color: #686FAF;
   color: #ffffff;
   padding: 25px;
@@ -16205,6 +16205,9 @@ figcaption {
   background-color: #D7452F;
   color: #ffffff;
   padding: 25px;
+}
+#impact-page-wrapper .impact-stats__card-counter-link {
+  text-decoration: none;
 }
 #impact-page-wrapper .impact-stats__card-counter {
   display: flex;

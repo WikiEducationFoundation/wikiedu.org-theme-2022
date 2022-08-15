@@ -1691,6 +1691,8 @@ figcaption {
             color: $primary;
         }
 
+        impact-stats__card-count-link
+
         &__card-wrapper-1 {
             background-color: #686FAF;
             color: #ffffff;
@@ -1708,7 +1710,9 @@ figcaption {
             color: #ffffff;
             padding: 25px;
         }
-
+        &__card-counter-link {
+            text-decoration: none;
+        }
         &__card-counter {
             display: flex;
             align-items: center;

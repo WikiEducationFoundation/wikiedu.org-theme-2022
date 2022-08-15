@@ -42,34 +42,40 @@ defined( 'ABSPATH' ) || exit;
 				<div class="impact-stats__since"><?php the_field('impact_stats_since') ?></div>	
 				<div class="row">
 					<div class="col-md-4">
-						<div class="impact-stats__card-wrapper-1">
-							<div class="impact-stats__card-counter">
-								<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_1_number') ?></div>
-								<img class="impact-stats__card-counter-icon" src="<?php the_field('impact_stats_card_1_icon') ?>" alt="">
-							</div>
-							<div class="impact-stats__card-type"><?php the_field('impact_stats_cart_1_type') ?></div>
-							<div class="impact-stats__card-description"><?php the_field('impact_stats_card_1_description') ?></div>
+					  <a class="impact-stats__card-counter-link" href="<?php the_field('impact_stats_card_1_link') ?>" title="<?php the_field('impact_stats_card_1_link_title') ?>">
+							<div class="impact-stats__card-wrapper-1">
+								<div class="impact-stats__card-counter">
+									<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_1_number') ?></div>
+									<img class="impact-stats__card-counter-icon" src="<?php the_field('impact_stats_card_1_icon') ?>" alt="">
+								</div>
+								<div class="impact-stats__card-type"><?php the_field('impact_stats_cart_1_type') ?></div>
+								<div class="impact-stats__card-description"><?php the_field('impact_stats_card_1_description') ?></div>
+              </a>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="impact-stats__card-wrapper-2">
-							<div class="impact-stats__card-counter">
-								<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_2_number') ?></div>
-								<img class="impact-stats__card-counter-icon" src="<?php the_field('impact_stats_card_2_icon') ?>" alt="">
+					  <a class="impact-stats__card-counter-link" href="<?php the_field('impact_stats_card_2_link') ?>" title="<?php the_field('impact_stats_card_2_link_title') ?>">
+							<div class="impact-stats__card-wrapper-2">
+								<div class="impact-stats__card-counter">
+									<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_2_number') ?></div>
+									<img class="impact-stats__card-counter-icon" src="<?php the_field('impact_stats_card_2_icon') ?>" alt="">
+								</div>
+								<div class="impact-stats__card-type"><?php the_field('impact_stats_cart_2_type') ?></div>
+								<div class="impact-stats__card-description"><?php the_field('impact_stats_card_2_description') ?></div>
 							</div>
-							<div class="impact-stats__card-type"><?php the_field('impact_stats_cart_2_type') ?></div>
-							<div class="impact-stats__card-description"><?php the_field('impact_stats_card_2_description') ?></div>
-						</div>
+            </a>
 					</div>
 					<div class="col-md-4">
-						<div class="impact-stats__card-wrapper-3">
-							<div class="impact-stats__card-counter">
-								<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_3_number') ?></div>
-								<img class="impact-stats__card-counter-icon" src="<?php the_field('impact_stats_card_3_icon') ?>" alt="">
+					  <a class="impact-stats__card-counter-link" href="<?php the_field('impact_stats_card_3_link') ?>" title="<?php the_field('impact_stats_card_3_link_title') ?>">
+							<div class="impact-stats__card-wrapper-3">
+								<div class="impact-stats__card-counter">
+									<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_3_number') ?></div>
+									<img class="impact-stats__card-counter-icon" src="<?php the_field('impact_stats_card_3_icon') ?>" alt="">
+								</div>
+								<div class="impact-stats__card-type"><?php the_field('impact_stats_cart_3_type') ?></div>
+								<div class="impact-stats__card-description"><?php the_field('impact_stats_card_3_description') ?></div>
 							</div>
-							<div class="impact-stats__card-type"><?php the_field('impact_stats_cart_3_type') ?></div>
-							<div class="impact-stats__card-description"><?php the_field('impact_stats_card_3_description') ?></div>
-						</div>
+            </a>
 					</div>
 				</div>
 				<div class="row p-5">
