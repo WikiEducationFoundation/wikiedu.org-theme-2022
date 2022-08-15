@@ -16191,7 +16191,7 @@ figcaption {
   padding-bottom: 20px;
   color: #686FAF;
 }
-impact-stats__card-count-link #impact-page-wrapper .impact-stats__card-wrapper-1 {
+#impact-page-wrapper .impact-stats__card-wrapper-1 {
   background-color: #686FAF;
   color: #ffffff;
   padding: 25px;
@@ -16206,7 +16206,7 @@ impact-stats__card-count-link #impact-page-wrapper .impact-stats__card-wrapper-1
   color: #ffffff;
   padding: 25px;
 }
-#impact-page-wrapper .impact-stats__card-counter-link {
+#impact-page-wrapper .impact-stats a.card-counter-link {
   text-decoration: none;
 }
 #impact-page-wrapper .impact-stats__card-counter {

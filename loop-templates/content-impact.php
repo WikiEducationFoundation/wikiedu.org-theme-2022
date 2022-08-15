@@ -42,7 +42,7 @@ defined( 'ABSPATH' ) || exit;
 				<div class="impact-stats__since"><?php the_field('impact_stats_since') ?></div>	
 				<div class="row">
 					<div class="col-md-4">
-					  <a class="impact-stats__card-counter-link" href="<?php the_field('impact_stats_card_1_link') ?>" title="<?php the_field('impact_stats_card_1_link_title') ?>">
+					  <a class="card-counter-link" href="<?php the_field('impact_stats_card_1_link') ?>" title="<?php the_field('impact_stats_card_1_link_title') ?>">
 							<div class="impact-stats__card-wrapper-1">
 								<div class="impact-stats__card-counter">
 									<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_1_number') ?></div>
@@ -54,7 +54,7 @@ defined( 'ABSPATH' ) || exit;
 						</div>
 					</div>
 					<div class="col-md-4">
-					  <a class="impact-stats__card-counter-link" href="<?php the_field('impact_stats_card_2_link') ?>" title="<?php the_field('impact_stats_card_2_link_title') ?>">
+					  <a class="card-counter-link" href="<?php the_field('impact_stats_card_2_link') ?>" title="<?php the_field('impact_stats_card_2_link_title') ?>">
 							<div class="impact-stats__card-wrapper-2">
 								<div class="impact-stats__card-counter">
 									<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_2_number') ?></div>
@@ -66,7 +66,7 @@ defined( 'ABSPATH' ) || exit;
             </a>
 					</div>
 					<div class="col-md-4">
-					  <a class="impact-stats__card-counter-link" href="<?php the_field('impact_stats_card_3_link') ?>" title="<?php the_field('impact_stats_card_3_link_title') ?>">
+					  <a class="card-counter-link" href="<?php the_field('impact_stats_card_3_link') ?>" title="<?php the_field('impact_stats_card_3_link_title') ?>">
 							<div class="impact-stats__card-wrapper-3">
 								<div class="impact-stats__card-counter">
 									<div class="impact-stats__card-counter-number"><?php the_field('impact_stats_card_3_number') ?></div>
