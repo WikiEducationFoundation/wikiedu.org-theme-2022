@@ -20,7 +20,6 @@ $container = get_theme_mod( 'understrap_container_type' );
     <header class="entry-header">
 		<div class="entry-header-wrapper">
 			<h1 class="entry-header__title"><?php the_title(); ?></h1>
-            <img class="hero__sstones" src="<?php echo get_stylesheet_directory_uri(); ?>/src/img/stepping+stones1.svg" alt="">
 		</div>
     </header><!-- .entry-header -->
 
