@@ -858,6 +858,93 @@ p, li {
     }
 }
 
+#sidebar-layout {
+    .entry-header {
+        display: flex;
+        justify-content: center;
+
+        &-wrapper {
+            background-color: #686FAF33;
+            background-image: url('../src/img/vector.svg');
+            padding-top: 80px;
+            padding-bottom: 80px;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-y: bottom;
+            width: 1440px;
+            max-width: 100%;
+        }
+
+        .entry-subtitle {
+            color: $primary;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .entry-title {
+            color: #22252AF2;
+            font-size: 36px;
+            font-weight: 600;
+        }
+    }
+
+    .entry-header-hero {
+        display: flex;
+        justify-content: center;
+
+        &-wrapper {
+            height: 640px;
+            width: 1440px;
+            max-width: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .entry-title-wrapper {
+            background-color: rgba(245, 252, 250, 0.9);
+            padding: 60px;
+            text-align: center;
+             
+            .entry-subtitle {
+                font-size: 24px;
+                color: $primary
+            }
+    
+            .entry-title {
+                font-size: 36px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .site-main, .site-sidebar {
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    #sidebar-layout {
+        .entry-header-hero {
+            &-wrapper {
+                height: 300px;
+    
+                .entry-title-wrapper {
+                    padding: 20px;
+                    margin: 20px;
+    
+                    .entry-title {
+                        font-size: 32px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 //Blog
 #index-wrapper, #archive-wrapper {
     .blog__header, .archive__header {
