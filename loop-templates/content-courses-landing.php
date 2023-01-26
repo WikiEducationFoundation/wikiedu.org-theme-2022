@@ -42,7 +42,7 @@ defined( 'ABSPATH' ) || exit;
 									<small class="open__courses-loop-dates"><?php echo get_field('course_dates', $courses->ID) ?></small>
 									<a class="open__courses-loop-link" href="<?php echo get_permalink($courses->ID) ?>"><h3 class="open__courses-loop-title"><?php echo $courses->post_title ?></h3></a>
 									<div class="open__courses-loop-excerpt"><?php echo $courses->post_excerpt ?></div>
-									<a class="btn btn-secondary open__courses-loop-btn" href="<?php echo get_permalink($courses->ID) ?>">ENROLL NOW</a>
+									<a class="btn btn-secondary open__courses-loop-btn" target="_blank" href="<?php echo get_permalink($courses->ID) ?>">ENROLL NOW</a>
 								</div>
 							</div>
 						</div>

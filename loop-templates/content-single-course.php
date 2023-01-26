@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
 					<div class="course__heading-user"><?php the_field('course_users'); ?></div>
 				</div>
 				<div class="course__body">
-					<a class="btn btn-primary course__body-btn" href="<?php the_field('course_enroll_now_button')?>">ENROLL NOW</a>
+					<a class="btn btn-primary course__body-btn" target="_blank" href="<?php the_field('course_enroll_now_button')?>">ENROLL NOW</a>
 					<h3 class="course__body-heading">Course Dates</h3>
 					<div class="course__body-content"><?php the_field('course_dates'); ?></div>
 					<h3 class="course__body-heading">Class Meeting Time</h3>
