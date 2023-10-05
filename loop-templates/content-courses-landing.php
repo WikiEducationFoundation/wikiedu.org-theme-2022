@@ -29,7 +29,8 @@ defined( 'ABSPATH' ) || exit;
 					$args = array(
 						'numberposts' => 6,
 						'post_type' => 'courses',
-						'order' => 'ASC'
+						'order' => 'ASC',
+						'orderby' => 'publish_date'
 					);
 
 					$open_courses = get_posts( $args );
