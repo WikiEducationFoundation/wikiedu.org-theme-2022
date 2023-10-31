@@ -43,7 +43,7 @@ function understrap_all_excerpts_get_more_link( $post_excerpt ) {
 }
 
 // Add excerpt support to Page type, so that we can control Twitter card text
-add_post_type_support( ‘page’, ‘excerpt’ );
+add_post_type_support( 'page', 'excerpt' );
 
 # Try to fix upload limit
 @ini_set( 'upload_max_size' , '16M' );
