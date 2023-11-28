@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
 					<div class="row">
 					<?php
 					$args = array(
-						'numberposts' => 6,
+						'numberposts' => 12,
 						'post_type' => 'courses',
 						'order' => 'ASC',
 						'orderby' => 'publish_date'
