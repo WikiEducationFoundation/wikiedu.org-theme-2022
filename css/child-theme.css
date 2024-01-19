@@ -15636,7 +15636,7 @@ p, li {
   margin-bottom: 40px;
 }
 #index-wrapper .site-main .blog_posts__loop article .wp-post-image, #archive-wrapper .site-main .blog_posts__loop article .wp-post-image {
-  height: 300px;
+  max-height: 300px;
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover;
