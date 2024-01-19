@@ -15153,7 +15153,7 @@ p, li {
   padding-bottom: 50px;
 }
 .latest_posts .wp-post-image {
-  height: 300px;
+  max-height: 300px;
   -o-object-fit: cover;
   object-fit: cover;
   width: 100%;
