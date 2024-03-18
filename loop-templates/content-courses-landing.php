@@ -30,7 +30,20 @@ defined( 'ABSPATH' ) || exit;
 						'numberposts' => 15,
 						'post_type' => 'courses',
 						'order' => 'ASC',
-						'orderby' => 'publish_date'
+						'orderby' => 'publish_date',
+						// Filter out the 'unlisted' courses
+						'meta_query' => [
+        						'relation' => 'OR',
+        						[
+								'key' => 'unlisted',
+          							'compare' => 'NOT EXISTS',
+        						],
+        						[
+          							'key' => 'unlisted',
+          							'compare' => '!=',
+          							'value' => TRUE
+        						]
+						]
 					);
 
 					$open_courses = get_posts( $args );
