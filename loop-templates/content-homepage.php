@@ -92,7 +92,20 @@ defined( 'ABSPATH' ) || exit;
             <?php
                 $args = array(
                     'numberposts' => 3,
-                    'post_type' => 'courses'
+                    'post_type' => 'courses',
+                    // Filter out the 'unlisted' courses
+					              	'meta_query' => [
+        					        	'relation' => 'OR',
+        						      [
+								              'key' => 'unlisted',
+          							     'compare' => 'NOT EXISTS',
+        						      ],
+        						      [
+          							     'key' => 'unlisted',
+          						     	'compare' => '!=',
+          							     'value' => TRUE
+        						      ]
+			              			]
                 );
 
                 $latest_courses = get_posts( $args );
