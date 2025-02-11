@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 		<section class="open__courses">
 			<div class="container">
 				<h2 class="open__courses-title">Open Courses</h2>
-
+                                <div class="open-courses-description"><?php the_field('open_courses_description'); ?></div>
 				<div class="open__courses-loop">
 					<div class="row">
 					<?php
