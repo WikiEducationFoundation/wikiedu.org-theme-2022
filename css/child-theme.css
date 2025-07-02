@@ -16926,6 +16926,28 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   display: none;
 }
 
+/* Supporters page */
+.page-id-49363 .logo-gallery {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.page-id-49363 .column {
+  width: 50%;
+  height: 300px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-id-49363 .column img {
+  max-width: 90%;
+  vertical-align: middle;
+}
+.page-id-49363 .row-break {
+  width: 100%;
+  clear: both;
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #007bff;

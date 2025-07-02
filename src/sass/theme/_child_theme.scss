@@ -2540,3 +2540,29 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
         display: none;
     }
 }
+
+/* Supporters page */
+.page-id-49363 {
+    .logo-gallery {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }  
+    .column {
+        width: 50%;
+        height: 300px;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .column img {
+        max-width: 90%;
+        vertical-align: middle;
+    }
+
+    .row-break {
+        width: 100%;
+        clear: both;
+    }
+}
