@@ -2496,3 +2496,47 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 .open-courses-description {
   text-align: center;
 }
+
+/* Signup Thanks page and signup form */
+.page-id-47905, .page-id-47898 {
+    .container {
+        max-width: 300px;
+        margin: auto;
+    }
+
+    .signup-form {
+        font-family: "Crimson Text",serif;
+        max-width: 300px;
+        margin: auto;
+    }
+
+    .signup-form img {
+        width: 25%;
+        display: block;
+        margin: auto;
+    }
+
+    .signup-form input, input:focus, textarea {
+        color: #666666;
+        width: 100%;
+        border: 1px solid #BBBBBB;
+        border-radius: 14px;
+        padding: 0 10px;
+    }
+
+    a.button {
+        color: #666666;
+        width: 100%;
+        border: 1px solid #BBBBBB;
+        border-radius: 14px;
+        padding: 0 10px;
+    }
+
+    .entry-header-wrapper {
+        display: none;
+    }
+
+    #main-nav, #wrapper-footer-full, #wrapper-footer {
+        display: none;
+    }
+}

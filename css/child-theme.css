@@ -16890,6 +16890,42 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   text-align: center;
 }
 
+/* Signup Thanks page and signup form */
+.page-id-47905 .container, .page-id-47898 .container {
+  max-width: 300px;
+  margin: auto;
+}
+.page-id-47905 .signup-form, .page-id-47898 .signup-form {
+  font-family: "Crimson Text", serif;
+  max-width: 300px;
+  margin: auto;
+}
+.page-id-47905 .signup-form img, .page-id-47898 .signup-form img {
+  width: 25%;
+  display: block;
+  margin: auto;
+}
+.page-id-47905 .signup-form input, .page-id-47905 input:focus, .page-id-47905 textarea, .page-id-47898 .signup-form input, .page-id-47898 input:focus, .page-id-47898 textarea {
+  color: #666666;
+  width: 100%;
+  border: 1px solid #BBBBBB;
+  border-radius: 14px;
+  padding: 0 10px;
+}
+.page-id-47905 a.button, .page-id-47898 a.button {
+  color: #666666;
+  width: 100%;
+  border: 1px solid #BBBBBB;
+  border-radius: 14px;
+  padding: 0 10px;
+}
+.page-id-47905 .entry-header-wrapper, .page-id-47898 .entry-header-wrapper {
+  display: none;
+}
+.page-id-47905 #main-nav, .page-id-47905 #wrapper-footer-full, .page-id-47905 #wrapper-footer, .page-id-47898 #main-nav, .page-id-47898 #wrapper-footer-full, .page-id-47898 #wrapper-footer {
+  display: none;
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #007bff;
