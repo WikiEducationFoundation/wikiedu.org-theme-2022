@@ -2133,3 +2133,28 @@ figcaption {
     color: #ffffff;
     text-align: center
 }
+
+/*
+Customizations for specific pages or common classes used in posts,
+ported from per-page CSS from the deprecated 'CSS Plus' plugin
+*/
+
+/* Course pages use this, like https://wikiedu.org/courses/pcori */
+.table-icon {
+  width: 30%;
+  float: left;
+}
+
+.table-content-left {
+  width: 70%;
+  float: left;
+  padding: 0px 30px 0px 3px;
+}
+
+.table-content-right {
+  padding-bottom: 30px;
+}
+
+.table-content-right h3, .table-content-right p {
+  font-family: "Crimson Text",serif;
+}
