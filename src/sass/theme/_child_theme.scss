@@ -2472,3 +2472,23 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
         margin-top: 25% !important;
     }
 }
+
+/* Donate page with GiveLively Widget */
+.page-id-6343 {
+    /* Wider container for GiveLively widget */
+    @media (min-width: 1376px) {
+        .container {
+            width: 1376px;
+        }
+
+        h1 {
+            font-size: 60px !important;
+        }
+    }
+
+    /* Smaller hero image / header height */
+    .hero {
+        min-height: 0px !important;
+        max-height: 300px !important;
+    }
+}

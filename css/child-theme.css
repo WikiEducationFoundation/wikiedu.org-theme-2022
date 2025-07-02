@@ -16868,6 +16868,24 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   margin-top: 25% !important;
 }
 
+/* Donate page with GiveLively Widget */
+.page-id-6343 {
+  /* Wider container for GiveLively widget */
+  /* Smaller hero image / header height */
+}
+@media (min-width: 1376px) {
+  .page-id-6343 .container {
+    width: 1376px;
+  }
+  .page-id-6343 h1 {
+    font-size: 60px !important;
+  }
+}
+.page-id-6343 .hero {
+  min-height: 0px !important;
+  max-height: 300px !important;
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #007bff;
