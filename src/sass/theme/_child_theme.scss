@@ -2438,3 +2438,30 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 .padding-top-medium {
   padding-top: 40px;
 }
+
+/* Used on for-instructors page: https://wikiedu.org/for-instructors/ */
+
+.btn-half {
+  margin-left: 10px;
+  min-width: 75px !important;
+  color: black !important;
+  border-color: black !important;
+  background-color: transparent !important;
+}
+
+.btn-half:hover {
+  margin-left: 10px;
+  min-width: 75px !important;
+  color: white !important;
+  border-color: #E06847 !important;
+  background-color: #E06847 !important;
+}
+
+.two-links {
+  display: block;
+  padding: 20px 0;
+}
+.two-links:hover {
+  color: black !important;
+  border-color: #939393 !important;
+}
