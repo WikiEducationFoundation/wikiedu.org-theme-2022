@@ -16886,6 +16886,10 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   max-height: 300px !important;
 }
 
+.open-courses-description {
+  text-align: center;
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #007bff;
