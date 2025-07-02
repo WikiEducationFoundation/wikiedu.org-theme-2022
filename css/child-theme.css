@@ -16863,6 +16863,11 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   border-color: #939393 !important;
 }
 
+/* Tweak for Careers page */
+.page-id-434 .entry-title-wrapper {
+  margin-top: 25% !important;
+}
+
 .has-blue-color,
 .has-blue-color:visited {
   color: #007bff;

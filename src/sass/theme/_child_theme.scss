@@ -2162,34 +2162,34 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 /* Partnerships page: https://wikiedu.org/partnerships */
 .page-id-47448 {
     .entry-header-wrapper {
-    background-color: #686FAF33;
-    background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/stepping+stones1.svg);
-    // background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/vector.svg);
-    padding-top: 80px;
-    padding-bottom: 80px;
-    text-align: center;
-    background-repeat: no-repeat;
-    background-size: 300px;
-    background-position-y: center;
-    background-position-x: right;
-    width: 1440px;
-    max-width: 100%;
+        background-color: #686FAF33;
+        background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/stepping+stones1.svg);
+        // background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/vector.svg);
+        padding-top: 80px;
+        padding-bottom: 80px;
+        text-align: center;
+        background-repeat: no-repeat;
+        background-size: 300px;
+        background-position-y: center;
+        background-position-x: right;
+        width: 1440px;
+        max-width: 100%;
     }
 
     .wrapper {
-    padding-bottom: 0;
+        padding-bottom: 0;
     }
     .headshot-bio {
-    margin: auto;
-    max-width: 840px;
+        margin: auto;
+        max-width: 840px;
     }
 
     .testimonials h2 {
-    text-align: center;
+        text-align: center;
     }
 
     .carousel-control-prev, .carousel-control-next {
-    bottom: -50px;
+        bottom: -50px;
     }
 }
 
@@ -2464,4 +2464,11 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 .two-links:hover {
   color: black !important;
   border-color: #939393 !important;
+}
+
+/* Tweak for Careers page */
+.page-id-434 {
+    .entry-title-wrapper {
+        margin-top: 25% !important;
+    }
 }
