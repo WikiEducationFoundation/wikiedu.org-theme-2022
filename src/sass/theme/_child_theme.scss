@@ -2158,3 +2158,283 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 .table-content-right h3, .table-content-right p {
   font-family: "Crimson Text",serif;
 }
+
+/* Partnerships page: https://wikiedu.org/partnerships */
+.page-id-47448 {
+    .entry-header-wrapper {
+    background-color: #686FAF33;
+    background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/stepping+stones1.svg);
+    // background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/vector.svg);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position-y: center;
+    background-position-x: right;
+    width: 1440px;
+    max-width: 100%;
+    }
+
+    .wrapper {
+    padding-bottom: 0;
+    }
+    .headshot-bio {
+    margin: auto;
+    max-width: 840px;
+    }
+
+    .testimonials h2 {
+    text-align: center;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+    bottom: -50px;
+    }
+}
+
+.partnerships-intro {
+  text-align: left;
+  font-size: 20px;
+  max-width: 800px;
+  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 70px;
+}
+
+.partnerships-how {
+  background-color: #f5f6fa;
+  background-image: url(/wp-content/themes/wikiedu.org-theme-2022/src/img/vector2.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.partnerships-how h2 {
+  padding-top: 30px;
+  text-align: center;
+  font-size: 54px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.partnerships-how h3 {
+  padding-bottom: 20px;
+  padding-top: 60px;
+  text-align: left;
+  max-width: 800px;
+  margin: auto;
+}
+
+.how-header {
+  font-size: 40px;
+}
+
+.partnerships-how-block p, li {
+  font-size: 18px;
+  color: #787882;
+  text-align: left;
+  max-width: 800px;
+  margin: auto;
+}
+
+.partnerships-foci {
+  max-width: 600px;
+  margin: auto;
+}
+
+.partnerships-focus {
+  width: 45%;
+  min-height: 312px;
+  float: left;
+  margin: 2% 2.5%;
+  border-radius: 10px;
+  background: linear-gradient(140deg,#686faf 50%,#60ab91 50%);
+}
+
+.partnerships-focus-inner {
+  background: white;
+  width: 98%;
+  margin: 1%;
+  min-height: inherit;
+  border-radius: 10px;
+}
+
+.partnerships-focus h3 {
+  text-align: center;
+  padding: 0;
+}
+
+.partnerships-focus p {
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.partnerships-focus-icon img {
+  max-width: 150px;
+  padding: 10px 10px 0 10px;
+  filter: invert(45%) sepia(1%) saturate(3490%) hue-rotate(201deg) brightness(104%) contrast(92%);
+}
+
+.partnerships-how-float {
+  font-size: 18px;
+  color: #787882;
+  text-align: left;
+  max-width: 600px;
+  float: left;
+  margin: auto;
+  padding-top: 40px;
+}
+
+.partnership-steps {
+  max-width: 800px;
+  margin: auto;
+}
+
+.partnership-step {
+  width: 18%;
+  float: left;
+  padding: 6px;
+  margin: 6px;
+  min-height: 250px;
+}
+
+.partnership-step-icon-1 {
+  padding: 21px 0;
+  margin: auto;
+}
+.partnership-step-icon-2 {
+  padding: 6px 0;
+  margin: auto;
+}
+.partnership-step-icon-3 {
+  padding: 9px 0;
+  margin: auto;
+}
+.partnership-step-icon-4 {
+  padding: 2px 0;
+  margin: auto;
+}
+.partnership-step-icon-5 {
+  margin: auto;
+}
+
+.partnership-step-text {
+  padding: 12px 8px 12px 0px;
+  text-align: left;
+}
+
+
+.partnerships-contact {
+  background: none !important;
+  border-bottom: 3px solid #686faf;
+}
+
+.partnerships-contact > .btn-primary {
+  font-size: 28px;
+}
+
+.partnerships-benefits {
+  padding-top: 40px;
+}
+
+.partnerships-benefits-table {
+  background: #e5e4f0;
+  border-collapse: collapse;
+  margin: 25px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.partnerships-benefits-table th,
+.partnerships-benefits-table td {
+  padding: 12px 15px;
+}
+
+.benefits-cell {
+    float: left;
+    width: 20%;
+    padding-top: 20%;
+    position: relative;
+    background: inherit;
+}
+
+.benefits-pseudotable {
+  background: #e5e4f0;
+  margin-top: 20px;
+}
+
+.benefits-cell-text {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    position: absolute;
+    margin: 9% 0 10% 6%;
+    padding-top: 7%;
+    padding-right: 7%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.benefits-divider {
+  margin-left: 6%;
+  margin-right: 10%;
+}
+
+@media (min-width: 1600px) {
+  .benefits-cell-text {
+    font-size: 18px;
+    border-right: 14px solid white;
+  }
+  .benefits-divider {
+    border-bottom: 14px solid white;
+  }
+}
+@media (max-width: 1599px) {
+  .benefits-cell-text {
+    font-size: 1.2vw;
+    border-right: 1vw solid white;
+  }
+  .benefits-divider {
+    border-bottom: 1vw solid white;
+  }
+}
+
+.benefits-cell-header {
+  text-align: center;
+  padding: 10% 20%;
+  font-weight: 600;
+}
+
+.no-border {
+  border: none !important;
+}
+
+.featured-posts {
+  background: #f5f6fa;
+}
+
+.featured-posts h2 {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.credits {
+  padding: 30px;
+}
+
+.clear {
+  clear: both;
+}
+
+.purple-divider {
+  border-bottom: 3px solid #686faf;
+}
+
+.padding-top-medium {
+  padding-top: 40px;
+}
