@@ -16868,20 +16868,20 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   margin-top: 25% !important;
 }
 
-/* Donate page with GiveLively Widget */
-.page-id-6343 {
+/* Donate pages with GiveLively Widget */
+.page-id-6343, .page-id-41712 {
   /* Wider container for GiveLively widget */
   /* Smaller hero image / header height */
 }
 @media (min-width: 1376px) {
-  .page-id-6343 .container {
+  .page-id-6343 .container, .page-id-41712 .container {
     width: 1376px;
   }
-  .page-id-6343 h1 {
+  .page-id-6343 h1, .page-id-41712 h1 {
     font-size: 60px !important;
   }
 }
-.page-id-6343 .hero {
+.page-id-6343 .hero, .page-id-41712 .hero {
   min-height: 0px !important;
   max-height: 300px !important;
 }
