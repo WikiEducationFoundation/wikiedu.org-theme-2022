@@ -16863,8 +16863,8 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   border-color: #939393 !important;
 }
 
-/* Tweak for Careers page */
-.page-id-434 .entry-title-wrapper {
+/* Tweak for Careers page  and others that need tweaked title placement*/
+.page-id-434 .entry-title-wrapper, .page-id-6299 .entry-title-wrapper, .page-id-15158 .entry-title-wrapper, .page-id-4990 .entry-title-wrapper {
   margin-top: 25% !important;
 }
 
