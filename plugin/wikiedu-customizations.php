@@ -135,7 +135,7 @@ function testimonials_shortcode( $atts ) {
     );
 
     $testimonials = get_posts( $args );
-    $img = get_stylesheet_directory_uri()."/src/img/testimonials_quote.svg";
+    // $img = get_stylesheet_directory_uri()."/src/img/testimonials_quote.svg";
 
     foreach ($testimonials as $testimonial) :
 
@@ -144,7 +144,7 @@ function testimonials_shortcode( $atts ) {
         $html .=            get_the_post_thumbnail( $testimonial->ID, 'full', array( 'class' => 'mr-3' ) );
         $html .= '              <div class="media-body">';
         $html .= '                  <div class="testimonial">';
-        $html .= '                      <img src="'.$img.'" alt="">';
+        // $html .= '                      <img src="'.$img.'" alt="">';
         $html .= '                      <p class="testimonial__description">'.$testimonial->post_content.'</p>';
         $html .= '                      <div class="testimonial__author--name">'.$testimonial->post_title.'</div>';
         $html .= '                      <div class="testimonial__author--company">'.get_field('testimonial_author_company', $testimonial->ID).'</div>';
