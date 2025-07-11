@@ -124,9 +124,11 @@ defined( 'ABSPATH' ) || exit;
                     </div>
                 </div>
             <?php } ?>
-        <div class="featured_courses__btn--more">
-            <a class="btn btn-secondary" href="<?php the_field('featured_courses_button_url') ?>"><?php the_field('featured_courses_button_name') ?></a>
-        </div>
+        <?php if (!empty($latest_courses)) { ?>
+            <div class="featured_courses__btn--more">
+                <a class="btn btn-secondary" href="<?php the_field('featured_courses_button_url') ?>"><?php the_field('featured_courses_button_name') ?></a>
+            </div>
+        <?php } ?>
     </div>
 </section>
 <section class="testimonials">
