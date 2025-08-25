@@ -2155,7 +2155,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   padding-bottom: 30px;
 }
 
-.table-content-right h3, .table-content-right p {
+.table-content-right > h3, .table-content-right > p {
   font-family: "Crimson Text",serif;
 }
 
@@ -2214,7 +2214,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   text-align: center;
 }
 
-.partnerships-how h2 {
+.partnerships-how > h2 {
   padding-top: 30px;
   text-align: center;
   font-size: 54px;
@@ -2222,7 +2222,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   margin: auto;
 }
 
-.partnerships-how h3 {
+.partnerships-how > h3 {
   padding-bottom: 20px;
   padding-top: 60px;
   text-align: left;
@@ -2234,7 +2234,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   font-size: 40px;
 }
 
-.partnerships-how-block p, li {
+.partnerships-how-block > p, .partnerships-how-block > li {
   font-size: 18px;
   color: #787882;
   text-align: left;
@@ -2264,17 +2264,17 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   border-radius: 10px;
 }
 
-.partnerships-focus h3 {
+.partnerships-focus > h3 {
   text-align: center;
   padding: 0;
 }
 
-.partnerships-focus p {
+.partnerships-focus > p {
   padding: 25px 30px;
   text-align: center;
 }
 
-.partnerships-focus-icon img {
+.partnerships-focus-icon > img {
   max-width: 150px;
   padding: 10px 10px 0 10px;
   filter: invert(45%) sepia(1%) saturate(3490%) hue-rotate(201deg) brightness(104%) contrast(92%);
@@ -2349,8 +2349,8 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.partnerships-benefits-table th,
-.partnerships-benefits-table td {
+.partnerships-benefits-table > th,
+.partnerships-benefits-table > td {
   padding: 12px 15px;
 }
 
@@ -2418,7 +2418,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   background: #f5f6fa;
 }
 
-.featured-posts h2 {
+.featured-posts > h2 {
   padding-top: 20px;
   text-align: center;
 }
