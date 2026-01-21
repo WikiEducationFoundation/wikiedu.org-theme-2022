@@ -16953,7 +16953,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 }
 .page-id-6299 .dwl-team-wrapper--main .team-member-info-wrap {
   border: 0 !important;
-  box-shadow: 0 !important;
+  box-shadow: none !important;
 }
 
 .has-blue-color,
