@@ -2566,3 +2566,16 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
         clear: both;
     }
 }
+
+// Work around unwanted elements of WordPress Team Manager
+.page-id-6299 {
+    .dwl-team-wrapper--main {
+        img {
+          display: none !important;
+        }
+        .team-member-info-wrap {
+            border: 0 !important;
+            box-shadow: 0 !important;
+        }
+    }
+}
