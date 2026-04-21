@@ -15396,7 +15396,6 @@ p, li {
   }
 }
 .faq {
-  padding-top: 87px;
   padding-bottom: 87px;
 }
 .faq__subtitle {
@@ -15425,7 +15424,7 @@ p, li {
   font-size: 24px;
   transition: 0.4s;
 }
-.faq .active, .faq .accordion:hover {
+.faq .accordion.active, .faq .accordion:hover {
   background-color: #686FAF;
   color: #ffffff;
 }
@@ -15440,7 +15439,7 @@ p, li {
   margin-left: 5px;
   font-size: 30px;
 }
-.faq .active:after {
+.faq .accordion.active:after {
   content: "−";
   color: #ffffff;
 }

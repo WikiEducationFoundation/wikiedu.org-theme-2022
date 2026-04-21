@@ -690,7 +690,6 @@ p, li {
 }
 
 .faq {
-    padding-top: 87px;
     padding-bottom: 87px;
 
     &__subtitle {
@@ -723,7 +722,7 @@ p, li {
         transition: 0.4s;
     }
       
-    .active, .accordion:hover {
+    .accordion.active, .accordion:hover {
         background-color: $primary;
         color: #ffffff;
     }
@@ -741,7 +740,7 @@ p, li {
         font-size: 30px;
     }
     
-    .active:after {
+    .accordion.active:after {
         content: "\2212";
         color: #ffffff;
     }
