@@ -178,7 +178,7 @@ add_shortcode( 'testimonials', 'testimonials_shortcode' );
 /* Add a Search form and Mobile close button */
 function add_mobile_close_button($items, $args) {
     if( $args->theme_location == 'primary' ){
-        $search_form .= '<li class="menu-item search-form-item">'
+        $search_form = '<li class="menu-item search-form-item">'
                   . '<form role="search" method="get" class="search-form" action="'.home_url( '/' ).'">'
                   . '<label>'
                   . '<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>'
