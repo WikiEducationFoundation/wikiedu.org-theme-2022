@@ -194,6 +194,7 @@ function add_mobile_close_button($items, $args) {
     
         return  $close_button . $search_form . $items;
     }
+    return $items;
 }
 add_filter('wp_nav_menu_items', 'add_mobile_close_button', 10, 2);
 
