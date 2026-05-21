@@ -16964,8 +16964,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 }
 .page-id-4976 .fi-hero {
   position: relative;
-  padding: 16px 28px 48px;
-  border-radius: 12px;
+  padding: 24px 0 48px;
   background: radial-gradient(700px 320px at 8% -20%, rgba(104, 111, 175, 0.1), transparent 60%), radial-gradient(600px 320px at 95% 0%, rgba(96, 171, 145, 0.12), transparent 60%);
 }
 .page-id-4976 .fi-hero__title {
@@ -17293,7 +17292,7 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 }
 @media (max-width: 767px) {
   .page-id-4976 .fi-hero {
-    padding: 8px 16px 32px;
+    padding: 12px 0 32px;
   }
   .page-id-4976 .fi-hero__title {
     font-size: 34px;
