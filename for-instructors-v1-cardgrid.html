@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Instructors — Wiki Education (v1: Card grid)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #686FAF;
+    --primary-dark: #4f568f;
+    --secondary: #60AB91;
+    --secondary-dark: #468973;
+    --accent: #E06847;
+    --ink: #1f2230;
+    --muted: #5a5e6e;
+    --rule: #e6e7ee;
+    --bg: #fafaf7;
+    --card-bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  h1, h2, h3 { font-family: 'Crimson Text', serif; font-weight: 600; letter-spacing: -0.01em; }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { color: var(--primary-dark); text-decoration: underline; }
+
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero {
+    padding: 72px 0 56px;
+    background:
+      radial-gradient(900px 400px at 12% -10%, rgba(104,111,175,.10), transparent 60%),
+      radial-gradient(700px 400px at 95% 0%, rgba(96,171,145,.12), transparent 60%),
+      var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero__eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--secondary-dark);
+    margin-bottom: 14px;
+  }
+  .hero h1 { font-size: 64px; line-height: 1.05; margin: 0 0 18px; }
+  .hero__lede {
+    font-size: 20px;
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0 0 12px;
+  }
+  .hero__contact { color: var(--muted); font-size: 16px; margin: 8px 0 0; }
+
+  /* TOC cards */
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .toc-card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 22px 20px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .toc-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--primary);
+  }
+  .toc-card:nth-child(2)::before { background: var(--secondary); }
+  .toc-card:nth-child(3)::before { background: var(--accent); }
+  .toc-card:nth-child(4)::before { background: #6b7c93; }
+  .toc-card__num {
+    font-family: 'Crimson Text', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .toc-card:nth-child(2) .toc-card__num { color: var(--secondary); }
+  .toc-card:nth-child(3) .toc-card__num { color: var(--accent); }
+  .toc-card:nth-child(4) .toc-card__num { color: #6b7c93; }
+  .toc-card__title {
+    margin-top: 10px;
+    font-family: 'Crimson Text', serif;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  .toc-card__arrow {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .toc-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(31, 34, 48, .08);
+    border-color: transparent;
+    text-decoration: none;
+  }
+  .toc-card:hover .toc-card__arrow { color: var(--primary); }
+
+  /* Sections */
+  section.block { padding: 80px 0; border-top: 1px solid var(--rule); }
+  section.block:first-of-type { border-top: 0; }
+  .section-head { margin-bottom: 36px; }
+  .section-head__num {
+    font-family: 'Crimson Text', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .section-head__num::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--rule);
+  }
+  .section-head h2 { font-size: 42px; margin: 0 0 14px; }
+  .section-head p { color: var(--muted); max-width: 760px; margin: 0 0 10px; font-size: 17px; }
+
+  /* Resource card grid */
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .res-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 24px 22px 22px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .res-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(31, 34, 48, .08);
+    border-color: rgba(104,111,175,.4);
+    text-decoration: none;
+  }
+  .res-card__icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(104,111,175,.10);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .res-card--pdf .res-card__icon { background: rgba(224,104,71,.12); color: var(--accent); }
+  .res-card--external .res-card__icon { background: rgba(96,171,145,.15); color: var(--secondary-dark); }
+  .res-card__icon svg { width: 18px; height: 18px; }
+  .res-card__type {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .res-card__title {
+    font-family: 'Crimson Text', serif;
+    font-size: 22px;
+    line-height: 1.25;
+    margin: 0 0 18px;
+    flex: 1;
+  }
+  .res-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 2px;
+    letter-spacing: .03em;
+  }
+  .res-card:hover .res-card__cta { color: var(--primary-dark); border-color: var(--primary-dark); }
+
+  /* Wide card: two-button (grading rubric) */
+  .res-card--wide {
+    grid-column: span 3;
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 26px;
+  }
+  .res-card--wide .res-card__title { margin: 0; flex: 1; }
+  .res-card--wide .res-card__actions { display: flex; gap: 10px; flex-shrink: 0; }
+  .btn-mini {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    color: var(--ink);
+    background: transparent;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    transition: background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .btn-mini:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Subject pill grid */
+  .pill-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 10px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background .12s ease, border-color .12s ease, color .12s ease;
+  }
+  .pill svg { width: 14px; height: 14px; color: var(--muted); flex-shrink: 0; }
+  .pill:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    text-decoration: none;
+  }
+  .pill:hover svg { color: #fff; }
+
+  /* Section background variants */
+  section.block--tinted {
+    background:
+      linear-gradient(180deg, rgba(96,171,145,.05) 0%, rgba(96,171,145,0) 100%);
+  }
+
+  /* Final design-your-assignment section placeholder */
+  .placeholder {
+    border: 1.5px dashed var(--rule);
+    border-radius: 10px;
+    padding: 28px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 960px) {
+    .hero h1 { font-size: 48px; }
+    .section-head h2 { font-size: 32px; }
+    .toc-grid { grid-template-columns: repeat(2, 1fr); }
+    .res-grid { grid-template-columns: repeat(2, 1fr); }
+    .res-card--wide { grid-column: span 2; flex-direction: column; align-items: flex-start; }
+    .pill-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .hero { padding: 48px 0 40px; }
+    .hero h1 { font-size: 36px; }
+    section.block { padding: 56px 0; }
+    .toc-grid, .res-grid, .pill-grid { grid-template-columns: 1fr; }
+    .res-card--wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="hero__eyebrow">For Instructors</span>
+    <h1>Resources for teaching with Wikipedia</h1>
+    <p class="hero__lede">If you're interested in adding a Wikipedia assignment to your course, please visit <a href="https://wikiedu.org/teach-with-wikipedia/">teach.wikiedu.org</a> to get started. This page is a reference once you're participating in our program.</p>
+    <p class="hero__lede">We've been supporting the Wikipedia Education Program in the United States and Canada since 2010, helping thousands of higher education instructors run Wikipedia assignments. We've collected their experiences and feedback to put together some guidelines and training for you and your students.</p>
+    <p class="hero__contact">Questions? Reach out to us at <strong>contact (at) wikiedu.org</strong>.</p>
+
+    <nav class="toc-grid" aria-label="On this page">
+      <a class="toc-card" href="#instructors">
+        <div class="toc-card__num">01</div>
+        <div class="toc-card__title">Resources for instructors</div>
+        <div class="toc-card__arrow">Read section →</div>
+      </a>
+      <a class="toc-card" href="#teaching-tools">
+        <div class="toc-card__num">02</div>
+        <div class="toc-card__title">Getting students ready</div>
+        <div class="toc-card__arrow">Read section →</div>
+      </a>
+      <a class="toc-card" href="#subject-specific">
+        <div class="toc-card__num">03</div>
+        <div class="toc-card__title">Subject-specific handouts</div>
+        <div class="toc-card__arrow">Read section →</div>
+      </a>
+      <a class="toc-card" href="#course-pages">
+        <div class="toc-card__num">04</div>
+        <div class="toc-card__title">Design your assignment</div>
+        <div class="toc-card__arrow">Read section →</div>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="block" id="instructors">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">Section 01</div>
+      <h2>Resources for instructors</h2>
+      <p>Before you begin, it's a good idea to familiarize yourself with Wikipedia editing and community guidelines. Our online instructor orientation will walk you through the basics. You may want to take a look at the student training, too — that way you'll see exactly what your students learn (and perhaps pick up some new editing skills yourself).</p>
+      <p>Our <em>Instructor Basics</em> brochure contains crucial information for designing successful assignments. <em>Case Studies</em> spotlights successful strategies for incorporating Wikipedia assignments. For courses that engage in theoretical thinking around Wikipedia and knowledge production, we offer a <em>Theories</em> handbook.</p>
+    </div>
+
+    <div class="res-grid">
+      <a class="res-card res-card--external" href="https://dashboard.wikiedu.org/training/instructors" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        <div class="res-card__type">Online Training</div>
+        <h3 class="res-card__title">Orientation for educators</h3>
+        <span class="res-card__cta">Start orientation →</span>
+      </a>
+      <a class="res-card res-card--pdf" href="https://commons.wikimedia.org/wiki/File:Instructor_Basics,_How_to_use_Wikipedia_as_a_teaching_tool_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="res-card__type">Brochure (PDF)</div>
+        <h3 class="res-card__title">Instructor Basics: How to use Wikipedia as a teaching tool</h3>
+        <span class="res-card__cta">Download →</span>
+      </a>
+      <a class="res-card res-card--pdf" href="https://commons.wikimedia.org/wiki/File:Case_Studies,_How_instructors_are_teaching_with_Wikipedia_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="res-card__type">Brochure (PDF)</div>
+        <h3 class="res-card__title">Case Studies: How instructors are teaching with Wikipedia</h3>
+        <span class="res-card__cta">Download →</span>
+      </a>
+      <a class="res-card res-card--pdf" href="https://commons.wikimedia.org/wiki/File:Theories_Wikipedia_and_the_production_of_knowledge.pdf" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="res-card__type">Handbook (PDF)</div>
+        <h3 class="res-card__title">Theories: Wikipedia and the production of knowledge</h3>
+        <span class="res-card__cta">Download →</span>
+      </a>
+      <a class="res-card" href="https://wikiedu.org/knowledge-equity-curriculum-guide/" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="res-card__type">Curriculum Guide</div>
+        <h3 class="res-card__title">Improving Knowledge Equity with the Wikipedia Assignment</h3>
+        <span class="res-card__cta">View online and download →</span>
+      </a>
+      <div class="res-card res-card--wide">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div>
+        <h3 class="res-card__title">Example grading rubric for a Wikipedia assignment</h3>
+        <div class="res-card__actions">
+          <a class="btn-mini" href="https://wikiedu.org/wp-content/uploads/2020/07/Example-grading-rubric-for-a-Wikipedia-assignment.docx" target="_blank" rel="noopener">.doc</a>
+          <a class="btn-mini" href="https://commons.wikimedia.org/wiki/File:Wiki_Education_Classroom_Program_example_grading_rubric.pdf" target="_blank" rel="noopener">PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block block--tinted" id="teaching-tools">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">Section 02</div>
+      <h2>Getting students ready</h2>
+      <p>Your class is about more than Wikipedia, so class time should still focus on the topic of your course. That's why we've created an online training that helps students learn the basics of Wikipedia editing. It takes about an hour in total, and completing it is the first step in any Wikipedia assignment.</p>
+      <p>We also offer print and online copies of three brochures for your students — <em>Editing Wikipedia</em>, <em>Illustrating Wikipedia</em>, and <em>Evaluating Wikipedia</em>.</p>
+    </div>
+
+    <div class="res-grid">
+      <a class="res-card res-card--external" href="https://dashboard.wikiedu.org/training/students" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        <div class="res-card__type">Online Training</div>
+        <h3 class="res-card__title">Training for Students</h3>
+        <span class="res-card__cta">Start training →</span>
+      </a>
+      <a class="res-card res-card--pdf" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_brochure_(Wiki_Education_Foundation)_(2017).pdf" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="res-card__type">Brochure (PDF)</div>
+        <h3 class="res-card__title">Editing Wikipedia</h3>
+        <span class="res-card__cta">Download →</span>
+      </a>
+      <a class="res-card res-card--pdf" href="https://commons.wikimedia.org/wiki/File:Illustrating_Wikipedia_brochure_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="res-card__type">Brochure (PDF)</div>
+        <h3 class="res-card__title">Illustrating Wikipedia</h3>
+        <span class="res-card__cta">Download →</span>
+      </a>
+      <a class="res-card res-card--pdf" href="https://commons.wikimedia.org/wiki/File:Evaluating_Wikipedia_brochure_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">
+        <div class="res-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+        <div class="res-card__type">Brochure (PDF)</div>
+        <h3 class="res-card__title">Evaluating Wikipedia</h3>
+        <span class="res-card__cta">Download →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="subject-specific">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">Section 03</div>
+      <h2>Subject-specific handouts for students</h2>
+      <p>Some content areas in Wikipedia have topic-specific guidelines for contributors. This can range from specific details on sourcing and citations, to ethical or legal guidelines specific to that field. Provide these handouts (available in print or online) to students if you teach in these subjects.</p>
+    </div>
+
+    <div class="pill-grid">
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_art_history.pdf" target="_blank" rel="noopener">Art history <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_Articles_Biographies.pdf" target="_blank" rel="noopener">Biographies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_books_(Wiki_Ed).pdf" target="_blank" rel="noopener">Books <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Chemistry_(Wiki_Ed).pdf" target="_blank" rel="noopener">Chemistry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_cultural_anthropology.pdf" target="_blank" rel="noopener">Cultural anthropology <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_ecology.pdf" target="_blank" rel="noopener">Ecology <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_environmental_sciences_(Wiki_Ed).pdf" target="_blank" rel="noopener">Environmental Sciences <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_films_(Wiki_Ed).pdf" target="_blank" rel="noopener">Films <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_genes_and_proteins_(Wiki_Ed).pdf" target="_blank" rel="noopener">Genes and Proteins <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_History.pdf" target="_blank" rel="noopener">History <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_in_LGBT%2B_studies.pdf" target="_blank" rel="noopener">LGBT+ studies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Linguistics.pdf" target="_blank" rel="noopener">Linguistics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_medicine.pdf" target="_blank" rel="noopener">Medicine <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Political_Science_(Wiki_Ed).pdf" target="_blank" rel="noopener">Political Science <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_psychology.pdf" target="_blank" rel="noopener">Psychology <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_Science_communication.pdf" target="_blank" rel="noopener">Science communication <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_sociology.pdf" target="_blank" rel="noopener">Sociology <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Species_(Wiki_Ed).pdf" target="_blank" rel="noopener">Species <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="pill" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_women%27s_studies.pdf" target="_blank" rel="noopener">Women's Studies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="block block--tinted" id="course-pages">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-head__num">Section 04</div>
+      <h2>Design your assignment</h2>
+    </div>
+    <div class="placeholder">This section is referenced from the table of contents on the current live page, but no content has been written for it yet. Drop content here when ready.</div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Instructors — Wiki Education (v2: Editorial)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #686FAF;
+    --primary-dark: #4f568f;
+    --secondary: #60AB91;
+    --secondary-dark: #468973;
+    --accent: #E06847;
+    --ink: #1d1f2c;
+    --muted: #5a5e6e;
+    --rule: #d8d6cc;
+    --paper: #f7f4ec;
+    --paper-2: #ede9dc;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-size: 18px;
+  }
+  h1, h2, h3, .display { font-family: 'Crimson Text', serif; font-weight: 600; letter-spacing: -0.005em; }
+  a { color: var(--primary-dark); text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .wrap--narrow { max-width: 780px; }
+
+  /* Masthead */
+  .masthead {
+    padding: 64px 0 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead__kicker {
+    font-size: 13px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 22px;
+  }
+  .masthead__kicker::before,
+  .masthead__kicker::after {
+    content: "";
+    display: inline-block;
+    width: 28px; height: 1px; background: currentColor;
+    vertical-align: middle;
+    margin: 0 14px;
+  }
+  .masthead h1 {
+    font-size: 84px;
+    line-height: 1;
+    margin: 0 0 22px;
+    font-weight: 700;
+  }
+  .masthead__dek {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.4;
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Lede / standfirst */
+  .lede {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lede__first {
+    font-size: 22px;
+    line-height: 1.5;
+    margin: 0 0 22px;
+  }
+  .lede__first::first-letter {
+    font-family: 'Crimson Text', serif;
+    font-weight: 700;
+    font-size: 72px;
+    float: left;
+    line-height: .9;
+    padding: 6px 14px 0 0;
+    color: var(--primary);
+  }
+  .lede p { margin: 0 0 18px; }
+  .lede__contact {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--rule);
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* In-this-guide nav */
+  .in-this-guide {
+    padding: 36px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .in-this-guide__label {
+    font-size: 12px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .in-this-guide__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 28px;
+    font-family: 'Crimson Text', serif;
+    font-size: 22px;
+  }
+  .in-this-guide__list a {
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .in-this-guide__list a:hover { color: var(--accent); border-color: var(--accent); }
+  .in-this-guide__sep { color: var(--rule); }
+
+  /* Article sections */
+  .article-section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-section--alt { background: var(--paper-2); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 64px;
+  }
+  .col-head__chapter {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .col-head h2 {
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 18px;
+  }
+  .col-head__rule {
+    width: 60px;
+    height: 3px;
+    background: var(--primary);
+    margin-bottom: 18px;
+  }
+  .col-head p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0 0 14px;
+  }
+
+  /* Resource list (editorial) */
+  .ed-list { list-style: none; padding: 0; margin: 0; }
+  .ed-list__item {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ed-list__item:last-child { border-bottom: 0; }
+  .ed-list__num {
+    font-family: 'Crimson Text', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary);
+    width: 50px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .ed-list__main { flex: 1; }
+  .ed-list__kind {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .ed-list__title {
+    font-family: 'Crimson Text', serif;
+    font-size: 24px;
+    line-height: 1.25;
+    margin: 0 0 6px;
+  }
+  .ed-list__title a { color: var(--ink); border-bottom: 1px solid transparent; }
+  .ed-list__title a:hover { color: var(--accent); border-color: var(--accent); }
+  .ed-list__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: .04em;
+  }
+  .ed-list__cta:hover { color: var(--accent); }
+  .ed-list__cta--pair { display: inline-flex; gap: 14px; }
+  .ed-list__cta--pair a { font-weight: 700; color: var(--primary-dark); letter-spacing: .04em; }
+  .ed-list__cta--pair a:hover { color: var(--accent); }
+
+  /* Subject handouts — dense inline column list */
+  .subject-grid {
+    columns: 3;
+    column-gap: 36px;
+    font-family: 'Crimson Text', serif;
+    font-size: 19px;
+    line-height: 1.85;
+  }
+  .subject-grid a {
+    display: block;
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    width: max-content;
+  }
+  .subject-grid a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .placeholder {
+    border-left: 3px solid var(--rule);
+    padding: 14px 22px;
+    color: var(--muted);
+    font-style: italic;
+    background: rgba(255,255,255,.4);
+  }
+
+  /* Decorative element */
+  .ornament {
+    display: block;
+    width: 80px;
+    margin: 0 auto;
+    color: var(--rule);
+  }
+
+  @media (max-width: 900px) {
+    .masthead h1 { font-size: 56px; }
+    .two-col { grid-template-columns: 1fr; gap: 28px; }
+    .subject-grid { columns: 2; }
+  }
+  @media (max-width: 560px) {
+    .masthead { padding: 40px 0 20px; }
+    .masthead h1 { font-size: 40px; }
+    .masthead__dek { font-size: 20px; }
+    .lede__first { font-size: 19px; }
+    .article-section { padding: 48px 0; }
+    .col-head h2 { font-size: 32px; }
+    .subject-grid { columns: 1; }
+    .in-this-guide__list { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead__kicker">For Instructors</div>
+    <h1 class="display">Teaching with<br>Wikipedia.</h1>
+    <p class="masthead__dek">A reference for educators participating in Wiki Education's program — orientations, brochures, and subject guides for you and your students.</p>
+  </div>
+</header>
+
+<section class="lede">
+  <div class="wrap wrap--narrow">
+    <p class="lede__first">If you're interested in adding a Wikipedia assignment to your course, please visit <a href="https://wikiedu.org/teach-with-wikipedia/">teach.wikiedu.org</a> to get started. There, you'll find step-by-step guidance for teaching with Wikipedia. This page serves as a useful reference once you're participating in our program.</p>
+    <p>Our staff has been supporting the Wikipedia Education Program in the United States and Canada since 2010, helping thousands of higher education instructors run Wikipedia assignments. We've collected their experiences and feedback to put together some guidelines and training for you and your students.</p>
+    <p class="lede__contact">Questions? Please reach out to us at <strong>contact (at) wikiedu.org</strong>.</p>
+  </div>
+</section>
+
+<nav class="in-this-guide" aria-label="In this guide">
+  <div class="wrap">
+    <div class="in-this-guide__label">In this guide</div>
+    <div class="in-this-guide__list">
+      <a href="#instructors">Resources for instructors</a>
+      <span class="in-this-guide__sep">·</span>
+      <a href="#teaching-tools">Getting students ready</a>
+      <span class="in-this-guide__sep">·</span>
+      <a href="#subject-specific">Subject-specific handouts</a>
+      <span class="in-this-guide__sep">·</span>
+      <a href="#course-pages">Design your assignment</a>
+    </div>
+  </div>
+</nav>
+
+<section class="article-section" id="instructors">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="col-head">
+        <div class="col-head__chapter">Chapter One</div>
+        <h2>Resources for instructors</h2>
+        <div class="col-head__rule"></div>
+        <p>Before you begin, familiarize yourself with Wikipedia editing and community guidelines. Our online instructor orientation walks you through the basics.</p>
+        <p>You may want to take a look at the student training, too — that way you'll see exactly what your students learn (and perhaps pick up some new editing skills yourself).</p>
+        <p><em>Instructor Basics</em> contains crucial information for designing successful assignments. <em>Case Studies</em> spotlights successful strategies. <em>Theories</em> is for courses engaging with knowledge production.</p>
+      </div>
+      <ol class="ed-list">
+        <li class="ed-list__item">
+          <div class="ed-list__num">i.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Online training</span>
+            <h3 class="ed-list__title"><a href="https://dashboard.wikiedu.org/training/instructors" target="_blank" rel="noopener">Orientation for educators</a></h3>
+            <a class="ed-list__cta" href="https://dashboard.wikiedu.org/training/instructors" target="_blank" rel="noopener">Start orientation →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">ii.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Brochure</span>
+            <h3 class="ed-list__title"><a href="https://commons.wikimedia.org/wiki/File:Instructor_Basics,_How_to_use_Wikipedia_as_a_teaching_tool_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Instructor Basics: How to use Wikipedia as a teaching tool</a></h3>
+            <a class="ed-list__cta" href="https://commons.wikimedia.org/wiki/File:Instructor_Basics,_How_to_use_Wikipedia_as_a_teaching_tool_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Download PDF →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">iii.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Brochure</span>
+            <h3 class="ed-list__title"><a href="https://commons.wikimedia.org/wiki/File:Case_Studies,_How_instructors_are_teaching_with_Wikipedia_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Case Studies: How instructors are teaching with Wikipedia</a></h3>
+            <a class="ed-list__cta" href="https://commons.wikimedia.org/wiki/File:Case_Studies,_How_instructors_are_teaching_with_Wikipedia_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Download PDF →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">iv.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Handbook</span>
+            <h3 class="ed-list__title"><a href="https://commons.wikimedia.org/wiki/File:Theories_Wikipedia_and_the_production_of_knowledge.pdf" target="_blank" rel="noopener">Theories: Wikipedia and the production of knowledge</a></h3>
+            <a class="ed-list__cta" href="https://commons.wikimedia.org/wiki/File:Theories_Wikipedia_and_the_production_of_knowledge.pdf" target="_blank" rel="noopener">Download PDF →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">v.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Curriculum guide</span>
+            <h3 class="ed-list__title"><a href="https://wikiedu.org/knowledge-equity-curriculum-guide/" target="_blank" rel="noopener">Curriculum Guide for Instructors: Improving Knowledge Equity with the Wikipedia Assignment</a></h3>
+            <a class="ed-list__cta" href="https://wikiedu.org/knowledge-equity-curriculum-guide/" target="_blank" rel="noopener">View online and download →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">vi.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Template</span>
+            <h3 class="ed-list__title">Example grading rubric for a Wikipedia assignment</h3>
+            <div class="ed-list__cta--pair">
+              <a href="https://wikiedu.org/wp-content/uploads/2020/07/Example-grading-rubric-for-a-Wikipedia-assignment.docx" target="_blank" rel="noopener">Download .doc →</a>
+              <a href="https://commons.wikimedia.org/wiki/File:Wiki_Education_Classroom_Program_example_grading_rubric.pdf" target="_blank" rel="noopener">Download PDF →</a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="article-section article-section--alt" id="teaching-tools">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="col-head">
+        <div class="col-head__chapter">Chapter Two</div>
+        <h2>Getting students ready</h2>
+        <div class="col-head__rule" style="background:var(--secondary);"></div>
+        <p>Your class is about more than Wikipedia, so class time should still focus on the topic of your course. That's why we've created an online training that helps students learn the basics of Wikipedia editing.</p>
+        <p>The training takes about an hour in total, and completing it is the first step in any Wikipedia assignment.</p>
+        <p>We also offer print and online copies of three brochures for your students — <em>Editing Wikipedia</em>, <em>Illustrating Wikipedia</em>, and <em>Evaluating Wikipedia</em>.</p>
+      </div>
+      <ol class="ed-list">
+        <li class="ed-list__item">
+          <div class="ed-list__num">i.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Online training</span>
+            <h3 class="ed-list__title"><a href="https://dashboard.wikiedu.org/training/students" target="_blank" rel="noopener">Training for Students</a></h3>
+            <a class="ed-list__cta" href="https://dashboard.wikiedu.org/training/students" target="_blank" rel="noopener">Start training →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">ii.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Brochure</span>
+            <h3 class="ed-list__title"><a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_brochure_(Wiki_Education_Foundation)_(2017).pdf" target="_blank" rel="noopener">Editing Wikipedia</a></h3>
+            <a class="ed-list__cta" href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_brochure_(Wiki_Education_Foundation)_(2017).pdf" target="_blank" rel="noopener">Download PDF →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">iii.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Brochure</span>
+            <h3 class="ed-list__title"><a href="https://commons.wikimedia.org/wiki/File:Illustrating_Wikipedia_brochure_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Illustrating Wikipedia</a></h3>
+            <a class="ed-list__cta" href="https://commons.wikimedia.org/wiki/File:Illustrating_Wikipedia_brochure_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Download PDF →</a>
+          </div>
+        </li>
+        <li class="ed-list__item">
+          <div class="ed-list__num">iv.</div>
+          <div class="ed-list__main">
+            <span class="ed-list__kind">Brochure</span>
+            <h3 class="ed-list__title"><a href="https://commons.wikimedia.org/wiki/File:Evaluating_Wikipedia_brochure_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Evaluating Wikipedia</a></h3>
+            <a class="ed-list__cta" href="https://commons.wikimedia.org/wiki/File:Evaluating_Wikipedia_brochure_(Wiki_Education_Foundation).pdf" target="_blank" rel="noopener">Download PDF →</a>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="article-section" id="subject-specific">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="col-head">
+        <div class="col-head__chapter">Chapter Three</div>
+        <h2>Subject-specific handouts</h2>
+        <div class="col-head__rule" style="background:var(--accent);"></div>
+        <p>Some content areas in Wikipedia have topic-specific guidelines for contributors. This can range from specific details on sourcing and citations to ethical or legal guidelines.</p>
+        <p>Provide these handouts (available in print or online) to students if you teach in these subjects.</p>
+      </div>
+      <div class="subject-grid">
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_art_history.pdf" target="_blank" rel="noopener">Art history</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_Articles_Biographies.pdf" target="_blank" rel="noopener">Biographies</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_books_(Wiki_Ed).pdf" target="_blank" rel="noopener">Books</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Chemistry_(Wiki_Ed).pdf" target="_blank" rel="noopener">Chemistry</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_cultural_anthropology.pdf" target="_blank" rel="noopener">Cultural anthropology</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_ecology.pdf" target="_blank" rel="noopener">Ecology</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_environmental_sciences_(Wiki_Ed).pdf" target="_blank" rel="noopener">Environmental Sciences</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_films_(Wiki_Ed).pdf" target="_blank" rel="noopener">Films</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_genes_and_proteins_(Wiki_Ed).pdf" target="_blank" rel="noopener">Genes and Proteins</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_History.pdf" target="_blank" rel="noopener">History</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_in_LGBT%2B_studies.pdf" target="_blank" rel="noopener">LGBT+ studies</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Linguistics.pdf" target="_blank" rel="noopener">Linguistics</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_medicine.pdf" target="_blank" rel="noopener">Medicine</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Political_Science_(Wiki_Ed).pdf" target="_blank" rel="noopener">Political Science</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_psychology.pdf" target="_blank" rel="noopener">Psychology</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_Science_communication.pdf" target="_blank" rel="noopener">Science communication</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_sociology.pdf" target="_blank" rel="noopener">Sociology</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_Species_(Wiki_Ed).pdf" target="_blank" rel="noopener">Species</a>
+        <a href="https://commons.wikimedia.org/wiki/File:Editing_Wikipedia_articles_on_women%27s_studies.pdf" target="_blank" rel="noopener">Women's Studies</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="article-section article-section--alt" id="course-pages">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="col-head">
+        <div class="col-head__chapter">Chapter Four</div>
+        <h2>Design your assignment</h2>
+        <div class="col-head__rule" style="background:#6b7c93;"></div>
+      </div>
+      <div class="placeholder">This section is referenced from the table of contents on the current live page, but no content has been written for it yet. Drop content here when ready.</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
