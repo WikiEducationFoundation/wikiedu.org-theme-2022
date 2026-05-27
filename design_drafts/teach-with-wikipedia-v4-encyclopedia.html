@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teach with Wikipedia — Wiki Education (v4: Encyclopedia)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Linux+Libertine&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #686FAF;
+    --primary-dark: #4a5191;
+    --secondary: #60AB91;
+    --secondary-dark: #468973;
+    --accent: #E06847;
+    --accent-dark: #b94e30;
+    --link: #0645ad;
+    --link-visited: #0b0080;
+    --link-redblue: #ba0000;
+    --ink: #202122;
+    --muted: #54595d;
+    --rule: #a2a9b1;
+    --rule-soft: #c8ccd1;
+    --rule-soft-2: #eaecf0;
+    --paper: #fff;
+    --paper-2: #f8f9fa;
+    --paper-3: #eaf3ff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Linux Libertine', 'Georgia', serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .sans { font-family: 'Source Sans 3', sans-serif; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a.red { color: var(--link-redblue); }
+  a.ext::after { content: "↗"; font-size: 0.85em; margin-left: 2px; opacity: .7; }
+
+  /* Wiki-style header */
+  .wiki-head {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .wiki-head__top {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 20px; border-bottom: 1px solid var(--rule-soft-2);
+    font-family: 'Source Sans 3', sans-serif; font-size: 13px;
+  }
+  .wiki-head__logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Linux Libertine', serif; font-size: 26px; font-weight: 400;
+    color: var(--ink);
+  }
+  .wiki-head__logo .mark {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--primary); color: #fff;
+    display: grid; place-items: center; font-weight: 700; font-size: 18px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .wiki-head__logo small {
+    display: block; font-size: 11px; color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif; letter-spacing: .02em;
+    margin-top: -2px;
+  }
+  .wiki-head__search {
+    margin-left: auto; flex: 0 1 320px; display: flex; align-items: center;
+    border: 1px solid var(--rule); border-radius: 2px; overflow: hidden;
+    background: var(--paper);
+  }
+  .wiki-head__search input {
+    border: 0; padding: 6px 10px; flex: 1; font: 14px 'Source Sans 3', sans-serif;
+    outline: none;
+  }
+  .wiki-head__search button {
+    border: 0; background: var(--paper-2); padding: 6px 12px; cursor: pointer;
+    font: 13px 'Source Sans 3', sans-serif; color: var(--muted); border-left: 1px solid var(--rule-soft);
+  }
+  .wiki-head__nav {
+    display: flex; gap: 0; padding: 0 20px;
+    font-family: 'Source Sans 3', sans-serif; font-size: 13px;
+  }
+  .wiki-head__nav a {
+    padding: 8px 14px; color: var(--link);
+    border: 1px solid transparent; border-bottom: 0;
+    margin-right: 2px; text-decoration: none;
+  }
+  .wiki-head__nav a.active {
+    background: var(--paper); color: var(--ink); font-weight: 600;
+    border-color: var(--rule-soft);
+    margin-bottom: -1px;
+  }
+  .wiki-head__nav a:hover:not(.active) { background: var(--paper-2); }
+  .wiki-head__nav .spacer { flex: 1; }
+  .wiki-head__nav .actions { display: flex; gap: 4px; }
+
+  /* Page layout */
+  .page { display: grid; grid-template-columns: 240px 1fr; max-width: 1400px; margin: 0 auto; }
+  @media (max-width: 900px) { .page { grid-template-columns: 1fr; } }
+  .toc-rail {
+    padding: 24px 20px; border-right: 1px solid var(--rule-soft);
+    font-family: 'Source Sans 3', sans-serif; font-size: 13.5px;
+    position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto;
+  }
+  @media (max-width: 900px) { .toc-rail { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--rule-soft); } }
+  .toc-rail h4 { font-family: 'Linux Libertine', serif; font-size: 16px; margin: 0 0 8px; font-weight: 700; }
+  .toc-rail ol { margin: 0; padding: 0 0 0 22px; list-style: decimal; }
+  .toc-rail ol ol { margin-top: 4px; }
+  .toc-rail li { padding: 3px 0; }
+  .toc-rail a { color: var(--link); }
+  .toc-rail .toc-tools { margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--rule-soft); }
+  .toc-rail .toc-tools h4 { font-size: 14px; color: var(--muted); }
+  .toc-rail .toc-tools ul { list-style: none; padding: 0; margin: 0; }
+  .toc-rail .toc-tools li { padding: 4px 0; }
+
+  .article { padding: 20px 32px 40px; max-width: 1080px; }
+  @media (max-width: 900px) { .article { padding: 20px 18px 40px; } }
+
+  /* Title */
+  .article__title {
+    font-family: 'Linux Libertine', serif;
+    font-size: 40px; line-height: 1.1; font-weight: 400;
+    margin: 4px 0 4px;
+    border-bottom: 1px solid var(--rule-soft);
+    padding-bottom: 8px;
+  }
+  .article__subtitle {
+    font-family: 'Source Sans 3', sans-serif; font-size: 13px;
+    color: var(--muted); margin-bottom: 16px;
+  }
+
+  /* Hatnotes */
+  .hatnote {
+    font-style: italic; font-size: 14px; color: var(--ink);
+    margin: 0 0 10px 24px;
+  }
+  .hatnote::before { content: ""; }
+
+  /* Banner / call-to-action like fundraising banner */
+  .banner {
+    border: 1px solid var(--accent); background: #fef3ef;
+    border-left: 8px solid var(--accent);
+    padding: 14px 18px; margin: 16px 0;
+    font-family: 'Source Sans 3', sans-serif; font-size: 14.5px;
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .banner__icon {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    background: var(--accent); color: #fff; display: grid; place-items: center;
+    font-weight: 700; font-size: 14px;
+  }
+  .banner__text { flex: 1; min-width: 240px; }
+  .banner__text strong { color: var(--accent-dark); }
+  .banner__cta {
+    background: var(--accent); color: #fff !important;
+    padding: 8px 16px; font-weight: 600; text-decoration: none !important;
+    border-radius: 3px;
+  }
+  .banner__cta:hover { background: var(--accent-dark); }
+
+  /* Lead + infobox */
+  .lead { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
+  @media (max-width: 800px) { .lead { grid-template-columns: 1fr; } }
+  .lead__body p { margin: 0 0 12px; font-size: 16.5px; line-height: 1.65; }
+  .lead__body p:first-child::first-line { font-weight: 700; }
+
+  .infobox {
+    border: 1px solid var(--rule-soft); background: var(--paper-2);
+    font-size: 13px; font-family: 'Source Sans 3', sans-serif;
+  }
+  .infobox__head {
+    background: var(--paper-3); padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .infobox__title {
+    font-family: 'Linux Libertine', serif; font-weight: 700; font-size: 18px;
+    color: var(--ink);
+  }
+  .infobox__sub { color: var(--muted); font-size: 12px; margin-top: 2px; font-style: italic; }
+  .infobox__image {
+    padding: 10px 10px 6px; text-align: center;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .infobox__image-box {
+    aspect-ratio: 1/1; max-width: 220px; margin: 0 auto;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+    color: #fff; display: grid; place-items: center; padding: 24px;
+    font-family: 'Linux Libertine', serif; font-size: 22px; line-height: 1.2; text-align: center;
+    border: 1px solid var(--rule-soft);
+  }
+  .infobox__caption { font-size: 11px; color: var(--muted); margin-top: 6px; font-style: italic; }
+  .infobox table { width: 100%; border-collapse: collapse; }
+  .infobox th, .infobox td {
+    padding: 6px 10px; vertical-align: top; text-align: left;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .infobox th { background: var(--paper-3); color: var(--ink); font-weight: 600; width: 38%; }
+  .infobox .section-row th {
+    text-align: center; background: var(--paper-3); padding: 6px;
+    font-style: italic; font-weight: 600;
+  }
+
+  /* Section headings — wiki style */
+  h2.sec {
+    font-family: 'Linux Libertine', serif;
+    font-size: 26px; font-weight: 400;
+    margin: 28px 0 10px;
+    border-bottom: 1px solid var(--rule-soft);
+    padding-bottom: 4px;
+  }
+  h3.sub {
+    font-family: 'Linux Libertine', serif;
+    font-size: 19px; font-weight: 700;
+    margin: 22px 0 8px;
+  }
+  p { margin: 0 0 12px; }
+  ul.wiki, ol.wiki { padding-left: 24px; margin: 0 0 12px; }
+  ul.wiki li, ol.wiki li { margin-bottom: 4px; }
+
+  /* Reference superscripts */
+  sup.ref a {
+    color: var(--link); font-size: 11px;
+    padding: 0 1px;
+  }
+  sup.ref a::before { content: "["; }
+  sup.ref a::after { content: "]"; }
+
+  /* Did you know callout */
+  .dyk {
+    border: 1px solid var(--rule-soft); background: var(--paper-2);
+    padding: 14px 18px; margin: 16px 0;
+    font-size: 14.5px; font-family: 'Source Sans 3', sans-serif;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .dyk__label {
+    flex-shrink: 0; font-weight: 700; color: var(--accent-dark);
+    font-style: italic; font-family: 'Linux Libertine', serif; font-size: 16px;
+  }
+  .dyk em { font-style: italic; }
+
+  /* Quote box */
+  .quotebox {
+    float: right; width: 320px; margin: 6px 0 12px 18px;
+    border: 1px solid var(--rule-soft); background: var(--paper-2);
+    padding: 14px 18px;
+  }
+  @media (max-width: 700px) { .quotebox { float: none; width: 100%; margin: 12px 0; } }
+  .quotebox__text {
+    font-family: 'Linux Libertine', serif; font-style: italic;
+    font-size: 17px; line-height: 1.45; margin: 0 0 8px;
+  }
+  .quotebox__attr { font-size: 13px; color: var(--muted); font-family: 'Source Sans 3', sans-serif; }
+  .quotebox__attr strong { color: var(--ink); }
+
+  /* Stats as wiki table */
+  table.wikitable {
+    border-collapse: collapse; margin: 12px 0; font-size: 14px;
+    background: var(--paper-2); width: 100%;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  table.wikitable th, table.wikitable td {
+    border: 1px solid var(--rule-soft); padding: 8px 12px;
+    text-align: left;
+  }
+  table.wikitable th {
+    background: var(--paper-3); font-weight: 600;
+  }
+  table.wikitable td.num { font-family: 'Linux Libertine', serif; font-size: 22px; font-weight: 700; text-align: right; color: var(--primary-dark); width: 90px; }
+  table.wikitable caption { font-style: italic; padding: 4px 0; color: var(--muted); font-size: 13px; }
+
+  /* Video figure (wiki "thumb") */
+  .thumb {
+    border: 1px solid var(--rule-soft); background: var(--paper-2);
+    padding: 6px; max-width: 380px; float: right;
+    margin: 6px 0 12px 18px;
+  }
+  @media (max-width: 700px) { .thumb { float: none; max-width: 100%; margin: 12px 0; } }
+  .thumb__frame {
+    aspect-ratio: 16/9; background: #000; position: relative;
+  }
+  .thumb__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .thumb__caption {
+    font-size: 12px; color: var(--ink); padding: 6px 4px 2px; line-height: 1.4;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .thumb__caption::before { content: "▣  "; color: var(--muted); }
+
+  /* FAQ as collapsed sections */
+  details.qx {
+    border: 1px solid var(--rule-soft); background: var(--paper-2);
+    margin: 6px 0;
+  }
+  details.qx > summary {
+    list-style: none; cursor: pointer;
+    padding: 8px 14px; font-family: 'Source Sans 3', sans-serif; font-weight: 600;
+    color: var(--link); display: flex; justify-content: space-between; gap: 16px;
+    font-size: 14.5px;
+  }
+  details.qx > summary::-webkit-details-marker { display: none; }
+  details.qx > summary::after { content: "[show]"; color: var(--link); font-weight: 400; font-size: 12px; }
+  details.qx[open] > summary::after { content: "[hide]"; }
+  details.qx[open] > summary { color: var(--ink); border-bottom: 1px solid var(--rule-soft); }
+  .qx__body { padding: 10px 14px; font-size: 14.5px; font-family: 'Linux Libertine', serif; }
+  .qx__body p { margin: 0 0 8px; }
+  .qx__body ul { padding-left: 22px; margin: 4px 0; }
+
+  /* Reference list */
+  ol.refs {
+    font-size: 13.5px; padding-left: 30px;
+    column-count: 2; column-gap: 36px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  @media (max-width: 700px) { ol.refs { column-count: 1; } }
+  ol.refs li { margin-bottom: 6px; break-inside: avoid; }
+
+  /* See also list */
+  .see-also { columns: 2; column-gap: 32px; font-size: 14.5px; padding-left: 22px; }
+  @media (max-width: 700px) { .see-also { columns: 1; } }
+
+  /* Interest form */
+  .reg-form {
+    border: 1px solid var(--rule-soft); background: var(--paper-2);
+    padding: 18px 20px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .reg-form h3 { font-family: 'Linux Libertine', serif; font-size: 19px; margin: 0 0 4px; font-weight: 700; }
+  .reg-form .sub { color: var(--muted); font-size: 13px; margin-bottom: 14px; font-style: italic; }
+  .reg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .reg-grid { grid-template-columns: 1fr; } }
+  .reg-field { display: flex; flex-direction: column; gap: 3px; font-size: 13.5px; }
+  .reg-field--full { grid-column: 1 / -1; }
+  .reg-field label { font-weight: 600; }
+  .reg-field input, .reg-field select, .reg-field textarea {
+    font: 14px 'Source Sans 3', sans-serif; padding: 6px 8px;
+    border: 1px solid var(--rule); background: #fff; border-radius: 2px;
+  }
+  .reg-field input:focus, .reg-field select:focus, .reg-field textarea:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+  .reg-field textarea { min-height: 70px; resize: vertical; }
+  .reg-submit {
+    background: var(--primary); color: #fff; border: 1px solid var(--primary-dark);
+    padding: 8px 18px; font: 600 14px 'Source Sans 3', sans-serif;
+    cursor: pointer; border-radius: 2px;
+  }
+  .reg-submit:hover { background: var(--primary-dark); }
+
+  /* Events table */
+  table.events {
+    border-collapse: collapse; width: 100%; font-size: 14px;
+    font-family: 'Source Sans 3', sans-serif; margin: 8px 0 12px;
+  }
+  table.events th, table.events td {
+    border: 1px solid var(--rule-soft); padding: 8px 12px; text-align: left;
+  }
+  table.events th { background: var(--paper-3); font-weight: 600; }
+  table.events td:last-child a { font-weight: 600; }
+
+  /* Footer */
+  footer.wikifoot {
+    border-top: 1px solid var(--rule); background: var(--paper-2);
+    padding: 16px 20px; margin-top: 32px;
+    font-size: 12.5px; color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  footer.wikifoot a { color: var(--link); }
+  .wikifoot__row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; }
+  .wikifoot__legal { max-width: 720px; }
+</style>
+</head>
+<body>
+
+<header class="wiki-head">
+  <div class="wiki-head__top">
+    <div class="wiki-head__logo">
+      <div class="mark">W</div>
+      <div>
+        Wiki <em style="color: var(--accent); font-style: italic;">Education</em>
+        <small>The free higher-education program</small>
+      </div>
+    </div>
+    <div class="wiki-head__search">
+      <input type="search" placeholder="Search Wiki Education…">
+      <button>Search</button>
+    </div>
+  </div>
+  <div class="wiki-head__nav">
+    <a href="#" class="active">Article</a>
+    <a href="#">Talk</a>
+    <div class="spacer"></div>
+    <div class="actions">
+      <a href="#">Read</a>
+      <a href="#">Edit</a>
+      <a href="#">View history</a>
+      <a href="https://dashboard.wikiedu.org/?teach"><strong>Apply</strong></a>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <nav class="toc-rail">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#desc">Description</a></li>
+      <li><a href="#how">How it works</a>
+        <ol>
+          <li><a href="#how">Program overview</a></li>
+          <li><a href="#how">Student skills developed</a></li>
+        </ol>
+      </li>
+      <li><a href="#stats">Faculty experience</a></li>
+      <li><a href="#voices">Voices from the program</a></li>
+      <li><a href="#events">Upcoming events</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#interest">Express interest</a></li>
+      <li><a href="#seealso">See also</a></li>
+      <li><a href="#refs">References</a></li>
+    </ol>
+    <div class="toc-tools">
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="https://dashboard.wikiedu.org/?teach">Apply for next term</a></li>
+        <li><a href="mailto:studentprogram@wikiedu.org">Contact program staff</a></li>
+        <li><a href="#">Cite this page</a></li>
+        <li><a href="#">Print / export</a></li>
+        <li><a href="#">Download PDF</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="article">
+    <p class="article__subtitle">From the Wiki Education program guide, the free higher-education program.</p>
+    <h1 class="article__title">Teach with Wikipedia</h1>
+
+    <p class="hatnote">This page is for higher-education instructors. For our staff page, see <a href="#">Wiki Education § Staff</a>. For undergraduate students, see <a href="#">Wikipedia Student Program</a>.</p>
+    <p class="hatnote">Not to be confused with <a href="#">writing about your course on Wikipedia</a>.</p>
+
+    <div class="banner">
+      <div class="banner__icon">★</div>
+      <div class="banner__text">
+        <strong>Now accepting Summer 2026 courses.</strong> Wiki Education's program is currently accepting course pages on a rolling basis. Free for instructors and students at accredited U.S. and Canadian postsecondary institutions.
+      </div>
+      <a class="banner__cta" href="https://dashboard.wikiedu.org/?teach">Apply now</a>
+    </div>
+
+    <div class="lead">
+      <div class="lead__body" id="desc">
+        <p>The <b>Wikipedia assignment</b> is a structured higher-education project supported by <a href="#">Wiki Education</a>, in which postsecondary students contribute to <a href="https://en.wikipedia.org" target="_blank">Wikipedia</a> as part of their coursework.<sup class="ref"><a href="#cite-1">1</a></sup> Students improve articles within their course's subject area, gaining skills in research, source evaluation, writing for a public audience, collaboration, and AI literacy.<sup class="ref"><a href="#cite-2">2</a></sup></p>
+
+        <p>Wiki Education's staff has supported the assignment in the United States and Canada since 2010, working with thousands of higher-education instructors.<sup class="ref"><a href="#cite-3">3</a></sup> Program support — including scaffolded training modules, a course dashboard, and direct staff guidance — is provided <i>free of charge</i> to instructors and their students at accredited postsecondary institutions, funded by donations.<sup class="ref"><a href="#cite-4">4</a></sup></p>
+
+        <p>The recommended timeline is six to twelve weeks, with shorter timelines available for medical-writing courses contributing through <a href="#">WikiProject Medicine</a>'s review process. Students are required to draft their contributions themselves; <a class="red" href="#">artificial-intelligence tools</a> may not be used to write or edit text submitted to Wikipedia.</p>
+      </div>
+
+      <aside class="infobox">
+        <div class="infobox__head">
+          <div class="infobox__title">Wikipedia assignment</div>
+          <div class="infobox__sub">A higher-education course project</div>
+        </div>
+        <div class="infobox__image">
+          <div class="infobox__image-box">A real-world, high-impact assignment for your course.</div>
+          <div class="infobox__caption">Wiki Education program for instructors</div>
+        </div>
+        <table>
+          <tr class="section-row"><th colspan="2">Quick facts</th></tr>
+          <tr><th>Eligibility</th><td>Postsecondary instructors at accredited institutions in the U.S. &amp; Canada</td></tr>
+          <tr><th>Cost</th><td>Free of charge</td></tr>
+          <tr><th>Duration</th><td>6–12 weeks (medical exempt)</td></tr>
+          <tr><th>Recommended class size</th><td>&lt; 40 individual; 40–100 pairs/groups</td></tr>
+          <tr><th>Disciplines</th><td>All</td></tr>
+          <tr><th>AI usage</th><td>Not permitted in submitted text</td></tr>
+          <tr class="section-row"><th colspan="2">Program</th></tr>
+          <tr><th>Founded</th><td>2010</td></tr>
+          <tr><th>Operator</th><td>Wiki Education Foundation</td></tr>
+          <tr><th>Headquarters</th><td>Chico, California</td></tr>
+          <tr><th>Term now open</th><td>Summer 2026 (rolling)</td></tr>
+          <tr class="section-row"><th colspan="2">Apply</th></tr>
+          <tr><th>Dashboard</th><td><a href="https://dashboard.wikiedu.org/?teach" class="ext">dashboard.wikiedu.org</a></td></tr>
+          <tr><th>Email</th><td><a href="mailto:studentprogram@wikiedu.org">studentprogram@wikiedu.org</a></td></tr>
+        </table>
+      </aside>
+    </div>
+
+    <h2 class="sec" id="how">How it works</h2>
+
+    <figure class="thumb">
+      <div class="thumb__frame">
+        <iframe src="https://www.youtube.com/embed/5169hRHZqIk" title="Wiki Education — the Wikipedia assignment, explained" allowfullscreen></iframe>
+      </div>
+      <figcaption class="thumb__caption">A four-minute introduction to the Wikipedia assignment for instructors.</figcaption>
+    </figure>
+
+    <p>Instructors create a course page on the Wiki Education Dashboard, where they receive scaffolded training modules, sample syllabi for their discipline, and a structured timeline. Students complete a self-paced training that teaches Wikipedia's <a href="#">policies and guidelines</a>, source evaluation, and editing mechanics.<sup class="ref"><a href="#cite-5">5</a></sup></p>
+
+    <p>Throughout the term, students select Wikipedia articles within the course's subject area, evaluate the available sources, draft contributions in a sandbox, and — following peer review — publish them to Wikipedia. The contributions remain online indefinitely, where they are read, reviewed, and refined by the broader Wikipedia community.</p>
+
+    <h3 class="sub">Student skills developed</h3>
+    <p>According to the program, students develop competence in the following areas:<sup class="ref"><a href="#cite-2">2</a></sup></p>
+    <ul class="wiki">
+      <li><a href="#">Research</a> and <a href="#">source evaluation</a></li>
+      <li>Writing for a public audience in a <a href="#">neutral point of view</a></li>
+      <li><a href="#">Collaborative editing</a> with peers and the Wikipedia community</li>
+      <li><a href="#">AI literacy</a> and the practice of verifiable contribution</li>
+      <li><a href="#">Digital citizenship</a> through participation in a shared <a href="#">knowledge commons</a></li>
+    </ul>
+
+    <div class="dyk">
+      <div class="dyk__label">Did you know…</div>
+      <div>… that more than <em>97% of participating instructors</em> agree the Wikipedia assignment helped their students develop digital and media literacy?<sup class="ref"><a href="#cite-6">6</a></sup></div>
+    </div>
+
+    <h2 class="sec" id="stats">Faculty experience</h2>
+
+    <div class="quotebox">
+      <p class="quotebox__text">Students' Wikipedia pages showed me that they achieved everything that a traditional research paper is supposed to do — and more.</p>
+      <div class="quotebox__attr">— <strong>Sarah Lirley</strong>, Columbia College<sup class="ref"><a href="#cite-7">7</a></sup></div>
+    </div>
+
+    <p>In Wiki Education's annual survey of participating faculty, instructors reported broad agreement that the Wikipedia assignment helped their students develop a defined set of skills. Reported agreement rates from the 2024–25 cohort follow.<sup class="ref"><a href="#cite-6">6</a></sup></p>
+
+    <table class="wikitable">
+      <caption>Reported instructor agreement, 2024–25 cohort</caption>
+      <thead><tr><th>Outcome</th><th style="width: 110px;">Agreement</th></tr></thead>
+      <tbody>
+        <tr><td>Developed digital and media literacy</td><td class="num">97%</td></tr>
+        <tr><td>Built digital citizenship habits</td><td class="num">96%</td></tr>
+        <tr><td>Strengthened research skills</td><td class="num">93%</td></tr>
+        <tr><td>Increased social and cultural awareness</td><td class="num">77%</td></tr>
+      </tbody>
+    </table>
+
+    <p>Faculty reflections are published on Wiki Education's blog; peer-reviewed literature is collected on the program's <a href="https://dashboard.wikiedu.org/faq/" class="ext">dashboard FAQ</a>.</p>
+
+    <h2 class="sec" id="voices">Voices from the program</h2>
+    <p>A selection of statements from participating instructors:</p>
+
+    <ul class="wiki" style="list-style: none; padding-left: 0;">
+      <li style="margin-bottom: 14px; border-left: 3px solid var(--primary); padding: 4px 0 4px 16px;">
+        <i>"Writing for Wikipedia has added intellectual substance and verve to my courses, while giving me and my students a sense of accomplishment."</i><br>
+        — <strong>Heather Sharkey</strong>, University of Pennsylvania<sup class="ref"><a href="#cite-8">8</a></sup>
+      </li>
+      <li style="margin-bottom: 14px; border-left: 3px solid var(--secondary); padding: 4px 0 4px 16px;">
+        <i>"By the end of the quarter, they realize that their work has been affecting people — something that rarely happens with a standard term paper."</i><br>
+        — <strong>Ben Karney</strong>, UCLA<sup class="ref"><a href="#cite-9">9</a></sup>
+      </li>
+      <li style="margin-bottom: 14px; border-left: 3px solid var(--accent); padding: 4px 0 4px 16px;">
+        <i>"The Wikipedia assignment is the closest thing to professional academic work that I can offer my undergraduates."</i><br>
+        — <strong>Shira Klein</strong>, Chapman University<sup class="ref"><a href="#cite-10">10</a></sup>
+      </li>
+      <li style="margin-bottom: 14px; border-left: 3px solid var(--primary); padding: 4px 0 4px 16px;">
+        <i>"My students leave the course knowing that they made a contribution that other people will actually read and use."</i><br>
+        — <strong>Jay Bolin</strong>, Catawba College<sup class="ref"><a href="#cite-11">11</a></sup>
+      </li>
+    </ul>
+
+    <h2 class="sec" id="events">Upcoming events</h2>
+    <p>Wiki Education hosts live information sessions where prospective instructors can ask questions and see the program dashboard. All times are listed in U.S. Pacific Time / U.S. Eastern Time. Sessions are held on <a href="https://zoom.us">Zoom</a>.</p>
+
+    <table class="events">
+      <thead><tr><th>Date</th><th>Session</th><th>Time</th><th>Registration</th></tr></thead>
+      <tbody>
+        <tr><td>26 May 2026 (Tue)</td><td>Health Professions information session</td><td>10:00 PT / 13:00 ET</td><td><a href="#">Register</a></td></tr>
+        <tr><td>8 June 2026 (Mon)</td><td>Health Professions information session</td><td>09:00 PT / 12:00 ET</td><td><a href="#">Register</a></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 13.5px; color: var(--muted); font-style: italic;">All-disciplines sessions are forthcoming. Express interest <a href="#interest">below</a> to be notified.</p>
+
+    <h2 class="sec" id="faq">Frequently asked questions</h2>
+
+    <details class="qx"><summary>What is the Wikipedia assignment?</summary><div class="qx__body"><p>A structured project in which your students improve Wikipedia articles in your course's subject area. They learn to navigate Wikipedia's policies, evaluate sources, and write for a public audience — and their work stays live online long after the term ends.</p></div></details>
+    <details class="qx"><summary>Who is eligible for free support?</summary><div class="qx__body"><p>Free support extends to instructors teaching at postsecondary institutions accredited in the United States and Canada. There are no eligibility restrictions based on discipline.</p></div></details>
+    <details class="qx"><summary>What do students learn?</summary><div class="qx__body"><ul><li>Research and source evaluation</li><li>Writing for a public audience</li><li>Collaboration with peers and the broader Wikipedia community</li><li>AI literacy and a critical eye for verifiable information</li></ul></div></details>
+    <details class="qx"><summary>How long should the assignment run?</summary><div class="qx__body"><p>We recommend a six- to twelve-week timeline for most courses. Medical writing courses contributing through WikiProject Medicine's review process are exempt from that minimum.</p></div></details>
+    <details class="qx"><summary>What class size works best?</summary><div class="qx__body"><p>Individual article assignments work well for classes under 40 students. Pairs or groups for 40–100. We don't recommend the assignment for classes over 100 unless adapted into a structured group project.</p></div></details>
+    <details class="qx"><summary>Can students use AI tools?</summary><div class="qx__body"><p>No. Students may not use AI tools to write or edit their text for Wikipedia. The goal of the assignment is for students to draft their own contributions to improve public access to high-quality, verifiable information.</p></div></details>
+    <details class="qx"><summary>How does my student protect their privacy?</summary><div class="qx__body"><p>Students choose their own Wikipedia usernames and are not required to use their real names. We provide guidance on selecting an appropriate username during training.</p></div></details>
+    <details class="qx"><summary>Can I run the assignment in multiple courses?</summary><div class="qx__body"><p>Yes. Once approved, you can run the assignment in as many courses as you like, each term, with our continued support.</p></div></details>
+    <details class="qx"><summary>How do I apply?</summary><div class="qx__body"><p>Visit the <a href="https://dashboard.wikiedu.org/?teach">Wiki Education Dashboard</a> to create your course page. Our staff reviews applications on a rolling basis and most instructors hear back within a few business days.</p></div></details>
+
+    <h2 class="sec" id="interest">Express interest</h2>
+    <p>Not ready to apply? Submit the interest form below and we'll be in touch with resources tailored to your subject and term.</p>
+
+    <div class="reg-form">
+      <h3>Interest in teaching with Wikipedia</h3>
+      <p class="sub">All fields with an asterisk are required.</p>
+      <form class="reg-grid">
+        <div class="reg-field"><label>Name *</label><input type="text" required></div>
+        <div class="reg-field"><label>Email *</label><input type="email" required></div>
+        <div class="reg-field"><label>Institution *</label><input type="text" required></div>
+        <div class="reg-field"><label>Subject *</label><input type="text" required></div>
+        <div class="reg-field"><label>Term</label>
+          <select><option>Summer 2026</option><option>Fall 2026</option><option>Spring 2027</option><option>Unsure</option></select>
+        </div>
+        <div class="reg-field"><label>How did you hear about us?</label><input type="text"></div>
+        <div class="reg-field reg-field--full"><label>Anything else?</label><textarea></textarea></div>
+        <div class="reg-field reg-field--full"><button type="submit" class="reg-submit">Submit interest form</button></div>
+      </form>
+    </div>
+
+    <h2 class="sec" id="seealso">See also</h2>
+    <ul class="see-also">
+      <li><a href="#">Earth Day brought us closer to a more complete record of biodiversity</a> (May 2026)</li>
+      <li><a href="#">Wikipedia made my depressing class more rigorous</a> (May 2026)</li>
+      <li><a href="#">From local history to public knowledge: 250 by 2026 Wiki Scholars</a> (April 2026)</li>
+      <li><a href="#">Change is uncomfortable: from knowledge receivers to producers</a> (April 2026)</li>
+      <li><a href="#">UW senior creates new Wikipedia article on oil spill in Nigeria</a> (April 2026)</li>
+      <li><a href="https://wikiedu.org/blog">All posts on the Wiki Education blog</a></li>
+    </ul>
+
+    <h2 class="sec" id="refs">References</h2>
+    <ol class="refs">
+      <li id="cite-1">"Wikipedia Student Program — Overview." <i>Wiki Education Foundation</i>. Retrieved 21 May 2026.</li>
+      <li id="cite-2">"Student learning outcomes." <i>Wiki Education Dashboard FAQ</i>. <a href="#" class="ext">dashboard.wikiedu.org/faq</a></li>
+      <li id="cite-3">"About Wiki Education." 2010–present. Founded as the Wiki Education Foundation in support of the Wikipedia Education Program in the United States and Canada.</li>
+      <li id="cite-4">Wiki Education Foundation. "Financials." A 501(c)(3) nonprofit; EIN 81-1610029.</li>
+      <li id="cite-5">"Training modules." <i>Wiki Education Dashboard</i>. Self-paced training covering Wikipedia policies, sourcing, and editing mechanics.</li>
+      <li id="cite-6">Wiki Education Foundation. <i>Annual Faculty Survey, 2024–25 cohort.</i></li>
+      <li id="cite-7">Lirley, Sarah. <i>Reflections on the Wikipedia assignment.</i> Columbia College. </li>
+      <li id="cite-8">Sharkey, Heather. <i>Faculty perspective.</i> University of Pennsylvania.</li>
+      <li id="cite-9">Karney, Ben. <i>Why I teach with Wikipedia.</i> UCLA.</li>
+      <li id="cite-10">Klein, Shira. <i>Public scholarship in the undergraduate classroom.</i> Chapman University.</li>
+      <li id="cite-11">Bolin, Jay. <i>Reflections.</i> Catawba College.</li>
+    </ol>
+  </main>
+</div>
+
+<footer class="wikifoot">
+  <div class="wikifoot__row">
+    <div class="wikifoot__legal">
+      Wiki Education Foundation · 341 Broadway Street, Suite 408 · Chico, CA 95928 · A 501(c)(3) nonprofit · EIN 81-1610029.
+      Content on this page is available under the <a href="#">Creative Commons Attribution-ShareAlike 4.0 License</a> unless otherwise noted.
+    </div>
+    <div>
+      <a href="#">Privacy policy</a> · <a href="#">Terms</a> · <a href="#">Contact</a> · <a href="#">Donate</a>
+    </div>
+  </div>
+  <div style="margin-top: 8px;">This page was last revised on 21 May 2026 by Wiki Education staff.</div>
+</footer>
+
+</body>
+</html>

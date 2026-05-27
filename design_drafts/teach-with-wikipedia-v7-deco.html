@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teach with Wikipedia — Wiki Education (v7: Art Deco)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2447;
+    --navy-2: #2a3460;
+    --gold: #c79e4a;
+    --gold-2: #e6c178;
+    --coral: #d96343;
+    --cream: #f4ecd6;
+    --cream-2: #ede2c2;
+    --ink: #14172e;
+    --muted: #6c6852;
+    --line: #c7b88c;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .deco { font-family: 'Limelight', serif; letter-spacing: .04em; }
+  .ui { font-family: 'Outfit', sans-serif; font-weight: 500; }
+  .label {
+    font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: .32em; text-transform: uppercase; color: var(--gold);
+  }
+  a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  a:hover { color: var(--coral); border-bottom-color: currentColor; }
+
+  /* Background ornament */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(199,158,74,.07) 0%, transparent 22%),
+      radial-gradient(circle at 88% 92%, rgba(199,158,74,.06) 0%, transparent 22%);
+  }
+  body > * { position: relative; z-index: 1; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .wrap--narrow { max-width: 760px; }
+  .wrap--mid { max-width: 880px; }
+
+  /* Decorative SVG helpers */
+  .sunburst {
+    display: block; margin: 0 auto;
+    width: 64px; height: 24px;
+  }
+  .chevrons {
+    display: flex; gap: 4px; justify-content: center; align-items: center;
+    margin: 14px 0;
+  }
+  .chevrons span {
+    display: inline-block; width: 0; height: 0;
+    border-style: solid; border-width: 6px 4px 0; border-color: var(--gold) transparent transparent;
+  }
+  .chevrons span:nth-child(2) { border-color: var(--coral) transparent transparent; }
+  .double-rule { border: none; border-top: 1px solid var(--gold); position: relative; margin: 24px 0; }
+  .double-rule::after {
+    content: ""; display: block; border-top: 1px solid var(--gold);
+    position: absolute; left: 0; right: 0; top: 3px;
+  }
+  .ornament-row {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    margin: 14px 0 22px;
+  }
+  .ornament-row::before, .ornament-row::after {
+    content: ""; flex: 1; height: 0; border-top: 1px solid var(--gold);
+    position: relative;
+  }
+  .ornament-row .diamond {
+    width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg);
+  }
+  .ornament-row .diamond--c { background: var(--coral); }
+
+  /* Marquee header */
+  .marquee {
+    background: var(--navy); color: var(--cream);
+    padding: 28px 32px;
+    position: relative; overflow: hidden;
+  }
+  .marquee::before, .marquee::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 12px;
+    background-image: linear-gradient(135deg, transparent 33.33%, var(--gold) 33.33%, var(--gold) 50%, transparent 50%, transparent 83.33%, var(--gold) 83.33%, var(--gold) 100%);
+    background-size: 12px 24px;
+  }
+  .marquee::before { top: 0; }
+  .marquee::after { bottom: 0; transform: scaleY(-1); }
+  .marquee__inner {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 24px; flex-wrap: wrap;
+    padding: 10px 0;
+  }
+  .marquee__brand {
+    font-family: 'Limelight', serif; font-size: 22px; letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .marquee__brand em { color: var(--gold); font-style: normal; }
+  .marquee__nav { display: flex; gap: 24px; }
+  .marquee__nav a {
+    color: var(--cream); border: none; font-family: 'Outfit', sans-serif;
+    font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+  }
+  .marquee__nav a:hover { color: var(--gold); }
+  @media (max-width: 700px) { .marquee__nav { display: none; } }
+
+  /* Playbill */
+  .playbill {
+    text-align: center; padding: 80px 0 56px;
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 50% 12%, rgba(199,158,74,.16) 0%, transparent 38%),
+      linear-gradient(to bottom, rgba(255,255,255,.4) 0%, transparent 30%);
+    border-bottom: 1px solid var(--gold);
+    position: relative;
+  }
+  .playbill__top {
+    font-family: 'Outfit', sans-serif; font-size: 12px; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .playbill h1 {
+    font-family: 'Limelight', serif;
+    font-size: clamp(40px, 6.5vw, 84px); line-height: 1.02;
+    letter-spacing: .03em; text-transform: uppercase;
+    margin: 24px 0 14px; color: var(--navy);
+  }
+  .playbill h1 .gold { color: var(--gold); }
+  .playbill__sub {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(20px, 2.4vw, 28px); line-height: 1.4;
+    color: var(--navy-2); max-width: 720px; margin: 0 auto 32px;
+  }
+  .playbill__byline {
+    font-family: 'Outfit', sans-serif; font-size: 12px; letter-spacing: .25em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+  }
+  .playbill__starring {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: var(--ink); font-size: 18px;
+  }
+  .playbill__starring strong { font-style: normal; font-weight: 500; color: var(--navy); letter-spacing: .04em; text-transform: uppercase; }
+
+  /* Big sunburst behind the apply CTA */
+  .ticket-cta {
+    text-align: center; padding: 56px 0;
+    background: var(--navy); color: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .ticket-cta__rays {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background:
+      conic-gradient(from 0deg,
+        transparent 0deg, rgba(199,158,74,.06) 10deg, transparent 20deg,
+        transparent 30deg, rgba(199,158,74,.06) 40deg, transparent 50deg,
+        transparent 60deg, rgba(199,158,74,.06) 70deg, transparent 80deg,
+        transparent 90deg, rgba(199,158,74,.06) 100deg, transparent 110deg,
+        transparent 120deg, rgba(199,158,74,.06) 130deg, transparent 140deg,
+        transparent 150deg, rgba(199,158,74,.06) 160deg, transparent 170deg,
+        transparent 180deg, rgba(199,158,74,.06) 190deg, transparent 200deg,
+        transparent 210deg, rgba(199,158,74,.06) 220deg, transparent 230deg,
+        transparent 240deg, rgba(199,158,74,.06) 250deg, transparent 260deg,
+        transparent 270deg, rgba(199,158,74,.06) 280deg, transparent 290deg,
+        transparent 300deg, rgba(199,158,74,.06) 310deg, transparent 320deg,
+        transparent 330deg, rgba(199,158,74,.06) 340deg, transparent 350deg);
+    border-radius: 50%; pointer-events: none;
+  }
+  .ticket-cta__content { position: relative; z-index: 1; padding: 0 32px; }
+  .ticket-cta h2 {
+    font-family: 'Limelight', serif; font-size: clamp(32px, 4vw, 48px);
+    letter-spacing: .04em; text-transform: uppercase;
+    margin: 16px 0 12px;
+  }
+  .ticket-cta h2 .gold { color: var(--gold); }
+  .ticket-cta p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; max-width: 560px; margin: 0 auto 28px; color: var(--cream-2); }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; padding: 14px 32px;
+    background: var(--gold); color: var(--navy);
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: .25em; text-transform: uppercase;
+    text-decoration: none; border: none;
+    border-radius: 0;
+    box-shadow:
+      inset 0 0 0 2px var(--gold),
+      inset 0 0 0 4px var(--navy),
+      inset 0 0 0 6px var(--gold);
+    transition: background .15s, color .15s, transform .1s;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--coral); box-shadow: inset 0 0 0 2px var(--coral), inset 0 0 0 4px var(--navy), inset 0 0 0 6px var(--coral); color: var(--cream); transform: translateY(-1px); }
+  .btn--ghost {
+    background: transparent; color: var(--cream);
+    box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 4px var(--navy), inset 0 0 0 6px var(--gold);
+  }
+  .btn--ghost:hover { background: var(--gold); color: var(--navy); box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 4px var(--navy), inset 0 0 0 6px var(--gold); }
+  .btn--ink { background: var(--navy); color: var(--cream); box-shadow: inset 0 0 0 2px var(--navy), inset 0 0 0 4px var(--gold), inset 0 0 0 6px var(--navy); }
+  .btn--ink:hover { background: var(--coral); box-shadow: inset 0 0 0 2px var(--coral), inset 0 0 0 4px var(--gold), inset 0 0 0 6px var(--coral); color: var(--cream); }
+
+  /* Act / section */
+  .act { padding: 80px 0; }
+  .act__opener { text-align: center; margin-bottom: 56px; }
+  .act__num { font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: .36em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .act__title {
+    font-family: 'Limelight', serif; font-size: clamp(28px, 3.6vw, 42px);
+    letter-spacing: .04em; text-transform: uppercase; color: var(--navy);
+    margin: 4px 0 14px;
+  }
+  .act__sub {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 20px; line-height: 1.5; color: var(--navy-2);
+    max-width: 640px; margin: 0 auto;
+  }
+
+  /* Stepped numbered cards (how it works) */
+  .acts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  @media (max-width: 800px) { .acts { grid-template-columns: 1fr; } }
+  .acts__card {
+    background: var(--cream-2); padding: 36px 28px 28px;
+    text-align: center; position: relative;
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--gold);
+  }
+  .acts__card::before, .acts__card::after {
+    content: ""; position: absolute; width: 18px; height: 18px;
+    background: var(--gold); transform: rotate(45deg);
+    top: -9px;
+  }
+  .acts__card::before { left: 24px; }
+  .acts__card::after { right: 24px; }
+  .acts__num {
+    font-family: 'Limelight', serif; font-size: 36px;
+    color: var(--coral); margin-bottom: 14px;
+  }
+  .acts__num::before, .acts__num::after {
+    content: "·"; color: var(--gold); margin: 0 10px;
+  }
+  .acts__title {
+    font-family: 'Limelight', serif; font-size: 18px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--navy); margin: 0 0 10px;
+  }
+  .acts__body { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--ink); line-height: 1.5; margin: 0; }
+
+  /* Video — framed like a screen */
+  .screen {
+    margin: 56px auto 0; max-width: 920px;
+    background: var(--navy); padding: 28px;
+    position: relative;
+    box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--gold);
+  }
+  .screen::before, .screen::after {
+    content: ""; position: absolute; width: 36px; height: 36px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 0, 100% 25%, 75% 25%, 75% 100%, 0 100%);
+  }
+  .screen::before { top: -6px; left: -6px; }
+  .screen::after { top: -6px; right: -6px; transform: scaleX(-1); }
+  .screen__frame { aspect-ratio: 16/9; background: #000; }
+  .screen__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .screen__cap {
+    text-align: center; margin-top: 14px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px;
+    color: var(--cream-2);
+  }
+  .screen__cap .label { display: block; color: var(--gold); margin-bottom: 4px; }
+
+  /* Stats — nested arches */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin: 32px 0; }
+  @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat { text-align: center; }
+  .stat__arc {
+    width: 140px; height: 140px; margin: 0 auto 18px; position: relative;
+  }
+  .stat__arc svg { width: 100%; height: 100%; }
+  .stat__num {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-family: 'Limelight', serif; font-size: 36px; color: var(--navy);
+  }
+  .stat__label {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 17px; line-height: 1.4; color: var(--ink);
+    max-width: 200px; margin: 0 auto;
+  }
+
+  /* Quote treatment */
+  .ovation {
+    background: var(--navy); color: var(--cream);
+    padding: 72px 32px; text-align: center;
+    position: relative;
+  }
+  .ovation__chevrons {
+    display: flex; justify-content: center; gap: 6px; margin-bottom: 18px;
+  }
+  .ovation__chevrons span { width: 0; height: 0; border-style: solid; border-width: 10px 7px 0; border-color: var(--gold) transparent transparent; }
+  .ovation__chevrons span:nth-child(even) { border-top-color: var(--coral); }
+  .ovation__quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(24px, 3vw, 36px); line-height: 1.3;
+    margin: 0 auto 22px; max-width: 760px;
+  }
+  .ovation__attr {
+    font-family: 'Limelight', serif; font-size: 14px; letter-spacing: .25em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .ovation__attr small { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--cream-2); margin-top: 4px; }
+
+  /* Voices grid */
+  .voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  @media (max-width: 900px) { .voices { grid-template-columns: 1fr; } }
+  .voice {
+    background: var(--cream); padding: 32px 28px;
+    border: 1px solid var(--gold); position: relative;
+    text-align: center;
+  }
+  .voice::before {
+    content: ""; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid var(--gold); pointer-events: none;
+  }
+  .voice__quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 18px; line-height: 1.45; margin: 8px 0 18px; position: relative;
+  }
+  .voice__name {
+    font-family: 'Limelight', serif; font-size: 13px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--navy);
+  }
+  .voice__role { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--muted); margin-top: 2px; }
+
+  /* Events as theater dates */
+  .billing {
+    background: var(--cream-2); padding: 36px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--gold);
+    text-align: center;
+  }
+  .billing__row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    border-top: 1px solid var(--gold);
+    padding: 24px 0;
+  }
+  .billing__row:last-child { border-bottom: 1px solid var(--gold); }
+  @media (max-width: 700px) { .billing__row { grid-template-columns: 1fr; } }
+  .billing__date { font-family: 'Limelight', serif; font-size: 24px; letter-spacing: .08em; text-transform: uppercase; color: var(--coral); }
+  .billing__date small { display: block; font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: .25em; color: var(--muted); margin-top: 4px; }
+  .billing__what {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 17px; color: var(--ink);
+  }
+  .billing__what strong { display: block; font-style: normal; font-family: 'Limelight', serif; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); margin-bottom: 4px; }
+  .billing__what a { display: inline-block; margin-top: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+
+  /* FAQ — playbill ledger */
+  details.qa {
+    border-top: 1px solid var(--gold); padding: 0;
+    background: var(--cream);
+  }
+  details.qa:last-of-type { border-bottom: 1px solid var(--gold); }
+  details.qa > summary {
+    list-style: none; cursor: pointer;
+    padding: 22px 28px; display: grid; grid-template-columns: 60px 1fr 32px; gap: 18px; align-items: center;
+  }
+  details.qa > summary::-webkit-details-marker { display: none; }
+  details.qa__num {
+    font-family: 'Limelight', serif; font-size: 16px; letter-spacing: .12em; color: var(--gold);
+  }
+  details.qa__q { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: var(--navy); }
+  details.qa .toggle {
+    width: 28px; height: 28px; position: relative;
+    border: 1px solid var(--gold); transform: rotate(45deg);
+  }
+  details.qa .toggle::before, .toggle::after {
+    content: ""; position: absolute; background: var(--gold);
+  }
+  details.qa .toggle::before { top: 50%; left: 6px; right: 6px; height: 1.5px; transform: translateY(-50%); }
+  details.qa .toggle::after { top: 6px; bottom: 6px; left: 50%; width: 1.5px; transform: translateX(-50%); transition: transform .2s; }
+  details.qa[open] .toggle::after { transform: translateX(-50%) scaleY(0); }
+  details.qa[open] > summary { background: var(--cream-2); }
+  .qa__body { padding: 0 28px 24px 88px; font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.55; }
+  .qa__body ul { padding-left: 1.2em; margin: 6px 0; }
+
+  /* Interest form — ornate */
+  .form-frame {
+    background: var(--cream-2); padding: 48px 40px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px var(--gold);
+    position: relative;
+  }
+  .form-frame::before, .form-frame::after {
+    content: ""; position: absolute; width: 24px; height: 24px;
+    background: var(--gold); transform: rotate(45deg);
+  }
+  .form-frame::before { top: -12px; left: 50%; transform: translateX(-50%) rotate(45deg); }
+  .form-frame::after { bottom: -12px; left: 50%; transform: translateX(-50%) rotate(45deg); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field--full { grid-column: 1 / -1; text-align: center; }
+  .field label { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); }
+  .field input, .field select, .field textarea {
+    font: 17px/1.4 'Cormorant Garamond', serif;
+    padding: 10px 12px; border: 1px solid var(--gold); background: var(--cream); color: var(--ink);
+    border-radius: 0; outline: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--coral); box-shadow: 0 0 0 1px var(--coral); }
+  .field textarea { min-height: 80px; resize: vertical; }
+
+  /* Posts — programs from the library */
+  .programs { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 700px) { .programs { grid-template-columns: 1fr; } }
+  .program {
+    background: var(--cream); padding: 24px 28px;
+    border: 1px solid var(--gold);
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .program__num {
+    font-family: 'Limelight', serif; color: var(--coral); font-size: 24px;
+    flex-shrink: 0; padding-top: 4px;
+  }
+  .program__date { font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+  .program h3 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; margin: 4px 0 0; font-weight: 500; line-height: 1.3; }
+  .program h3 a { color: var(--navy); border: none; }
+  .program h3 a:hover { color: var(--coral); }
+
+  /* Closer / footer */
+  footer.theatre {
+    background: var(--navy); color: var(--cream); padding: 56px 0 28px;
+    border-top: 6px double var(--gold);
+  }
+  footer.theatre a { color: var(--cream); border: none; }
+  footer.theatre a:hover { color: var(--gold); }
+  .theatre__top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px;
+    padding-bottom: 32px; border-bottom: 1px solid rgba(199,158,74,.4);
+  }
+  @media (max-width: 800px) { .theatre__top { grid-template-columns: 1fr 1fr; } }
+  .theatre__brand { font-family: 'Limelight', serif; font-size: 24px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+  .theatre__brand em { color: var(--gold); font-style: normal; }
+  .theatre h4 { font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
+  .theatre ul { list-style: none; padding: 0; margin: 0; }
+  .theatre li { margin-bottom: 8px; font-family: 'Cormorant Garamond', serif; font-size: 17px; }
+  .theatre__legal {
+    padding-top: 20px; font-family: 'Outfit', sans-serif; font-size: 11px;
+    letter-spacing: .15em; text-transform: uppercase; color: rgba(244,236,214,.6);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header class="marquee">
+  <div class="wrap marquee__inner">
+    <div class="marquee__brand">Wiki <em>·</em> Education</div>
+    <nav class="marquee__nav">
+      <a href="#how">How it works</a>
+      <a href="#proof">By the numbers</a>
+      <a href="#voices">Voices</a>
+      <a href="#faq">FAQ</a>
+      <a href="#apply">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<section class="playbill">
+  <div class="wrap">
+    <div class="playbill__top">— A program for higher-education faculty —</div>
+    <div class="chevrons"><span></span><span></span><span></span></div>
+
+    <h1>A High-Impact<br><span class="gold">·</span> Real-World <span class="gold">·</span><br>Assignment</h1>
+
+    <div class="ornament-row"><div class="diamond"></div><div class="diamond diamond--c"></div><div class="diamond"></div></div>
+
+    <p class="playbill__sub">Students improve Wikipedia articles in your subject area — and learn research, source evaluation, public writing, collaboration, and AI literacy along the way.</p>
+
+    <a class="btn" href="https://dashboard.wikiedu.org/?teach">Apply for Summer 2026 →</a>
+
+    <div style="margin-top: 36px;">
+      <div class="playbill__byline">Now accepting · Rolling basis</div>
+      <p class="playbill__starring"><strong>Featuring</strong> Wiki Education staff &nbsp;·&nbsp; <strong>Supporting</strong> thousands of instructors &nbsp;·&nbsp; <strong>Cost</strong> Free of charge</p>
+    </div>
+  </div>
+</section>
+
+<section class="act" id="how">
+  <div class="wrap">
+    <div class="act__opener">
+      <div class="act__num">Act One</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">An Assignment in Six Movements</h2>
+      <p class="act__sub">A six- to twelve-week scaffolded program. Medical-writing courses contributing through WikiProject Medicine are exempt from the minimum.</p>
+    </div>
+
+    <div class="acts">
+      <div class="acts__card">
+        <div class="acts__num">i</div>
+        <h3 class="acts__title">Create a course page</h3>
+        <p class="acts__body">Set up your course on the Wiki Education Dashboard. Sample syllabi included for your discipline.</p>
+      </div>
+      <div class="acts__card">
+        <div class="acts__num">ii</div>
+        <h3 class="acts__title">Students complete training</h3>
+        <p class="acts__body">Self-paced modules on Wikipedia policies, sourcing, and editing. No class time required.</p>
+      </div>
+      <div class="acts__card">
+        <div class="acts__num">iii</div>
+        <h3 class="acts__title">Choose articles to improve</h3>
+        <p class="acts__body">Students select articles in your subject area, evaluate the sources, and post bibliographies.</p>
+      </div>
+      <div class="acts__card">
+        <div class="acts__num">iv</div>
+        <h3 class="acts__title">Draft — without AI</h3>
+        <p class="acts__body">Students write contributions themselves. We don't permit AI tools for submitted text. Peer review follows.</p>
+      </div>
+      <div class="acts__card">
+        <div class="acts__num">v</div>
+        <h3 class="acts__title">Publish to Wikipedia</h3>
+        <p class="acts__body">Contributions go live, where the Wikipedia community reviews them and the public reads them.</p>
+      </div>
+      <div class="acts__card">
+        <div class="acts__num">vi</div>
+        <h3 class="acts__title">Reflect on the work</h3>
+        <p class="acts__body">Dashboard reports show pageviews, edits, citations added — concrete evidence of public reach.</p>
+      </div>
+    </div>
+
+    <div class="screen">
+      <div class="screen__frame">
+        <iframe src="https://www.youtube.com/embed/5169hRHZqIk" title="Wiki Education — the Wikipedia assignment, in four minutes" allowfullscreen></iframe>
+      </div>
+      <p class="screen__cap"><span class="label">An entr'acte</span>The Wikipedia assignment, in four minutes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ticket-cta" id="apply">
+  <div class="ticket-cta__rays"></div>
+  <div class="ticket-cta__content">
+    <div class="chevrons"><span></span><span></span><span></span></div>
+    <h2>Reserve your <span class="gold">course page</span></h2>
+    <p>Most instructors are approved within a few business days. Our staff will walk you through every step.</p>
+    <a class="btn" href="https://dashboard.wikiedu.org/?teach">Apply now →</a>
+  </div>
+</section>
+
+<section class="act" id="proof">
+  <div class="wrap">
+    <div class="act__opener">
+      <div class="act__num">Act Two</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">By the Numbers</h2>
+      <p class="act__sub">Reported instructor agreement that the assignment helped students develop the named outcome. Wiki Education faculty survey, 2024–25.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__arc">
+          <svg viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="60" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+            <circle cx="70" cy="70" r="50" fill="none" stroke="#c79e4a" stroke-width="0.6"/>
+            <circle cx="70" cy="70" r="40" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+          </svg>
+          <div class="stat__num">97<small style="font-size:18px; color: var(--coral);">%</small></div>
+        </div>
+        <div class="stat__label">Developed digital &amp; media literacy</div>
+      </div>
+      <div class="stat">
+        <div class="stat__arc">
+          <svg viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="60" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+            <circle cx="70" cy="70" r="50" fill="none" stroke="#c79e4a" stroke-width="0.6"/>
+            <circle cx="70" cy="70" r="40" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+          </svg>
+          <div class="stat__num">96<small style="font-size:18px; color: var(--coral);">%</small></div>
+        </div>
+        <div class="stat__label">Built digital citizenship habits</div>
+      </div>
+      <div class="stat">
+        <div class="stat__arc">
+          <svg viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="60" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+            <circle cx="70" cy="70" r="50" fill="none" stroke="#c79e4a" stroke-width="0.6"/>
+            <circle cx="70" cy="70" r="40" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+          </svg>
+          <div class="stat__num">93<small style="font-size:18px; color: var(--coral);">%</small></div>
+        </div>
+        <div class="stat__label">Strengthened research skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat__arc">
+          <svg viewBox="0 0 140 140">
+            <circle cx="70" cy="70" r="60" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+            <circle cx="70" cy="70" r="50" fill="none" stroke="#c79e4a" stroke-width="0.6"/>
+            <circle cx="70" cy="70" r="40" fill="none" stroke="#c79e4a" stroke-width="1.5"/>
+          </svg>
+          <div class="stat__num">77<small style="font-size:18px; color: var(--coral);">%</small></div>
+        </div>
+        <div class="stat__label">Increased social &amp; cultural awareness</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ovation" id="voices">
+  <div class="wrap">
+    <div class="ovation__chevrons"><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="ovation__quote">Students' Wikipedia pages showed me that they achieved everything that a traditional research paper is supposed to do — and more.</p>
+    <p class="ovation__attr">Sarah Lirley<small>Columbia College</small></p>
+  </div>
+</section>
+
+<section class="act">
+  <div class="wrap">
+    <div class="act__opener">
+      <div class="act__num">Act Three</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">Voices from the Program</h2>
+      <p class="act__sub">A few of the thousands of faculty members who've made the Wikipedia assignment part of their courses.</p>
+    </div>
+
+    <div class="voices">
+      <div class="voice">
+        <p class="voice__quote">"Writing for Wikipedia has added intellectual substance and verve to my courses, while giving me and my students a sense of accomplishment."</p>
+        <div class="voice__name">Heather Sharkey</div>
+        <div class="voice__role">University of Pennsylvania</div>
+      </div>
+      <div class="voice">
+        <p class="voice__quote">"By the end of the quarter, they realize that their work has been affecting people — something that rarely happens with a standard term paper."</p>
+        <div class="voice__name">Ben Karney</div>
+        <div class="voice__role">UCLA</div>
+      </div>
+      <div class="voice">
+        <p class="voice__quote">"The Wikipedia assignment is the closest thing to professional academic work that I can offer my undergraduates."</p>
+        <div class="voice__name">Shira Klein</div>
+        <div class="voice__role">Chapman University</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="act">
+  <div class="wrap wrap--mid">
+    <div class="act__opener">
+      <div class="act__num">An interlude</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">Upcoming Engagements</h2>
+      <p class="act__sub">Drop into a live information session with our staff. Ask questions, see the dashboard, hear what other instructors are doing.</p>
+    </div>
+
+    <div class="billing">
+      <div class="billing__row">
+        <div class="billing__date">May 26<small>Tuesday · 2026</small></div>
+        <div class="billing__what">
+          <strong>Health Professions session</strong>
+          10:00 PT &nbsp;·&nbsp; 13:00 ET &nbsp;·&nbsp; 60 min &nbsp;·&nbsp; Zoom
+          <br><a href="#">Reserve a seat →</a>
+        </div>
+      </div>
+      <div class="billing__row">
+        <div class="billing__date">June 8<small>Monday · 2026</small></div>
+        <div class="billing__what">
+          <strong>Health Professions session</strong>
+          09:00 PT &nbsp;·&nbsp; 12:00 ET &nbsp;·&nbsp; 60 min &nbsp;·&nbsp; Zoom
+          <br><a href="#">Reserve a seat →</a>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--muted); margin-top: 18px; font-size: 16px;">More all-disciplines engagements forthcoming.</p>
+  </div>
+</section>
+
+<section class="act" id="faq">
+  <div class="wrap wrap--mid">
+    <div class="act__opener">
+      <div class="act__num">Act Four</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">Questions, Answered</h2>
+    </div>
+
+    <details class="qa">
+      <summary><span class="details qa__num">I.</span><span class="details qa__q">What is the Wikipedia assignment?</span><span class="toggle"></span></summary>
+      <div class="qa__body">A structured project in which your students improve Wikipedia articles in your course's subject area. They learn to navigate Wikipedia's policies, evaluate sources, and write for a public audience — and their work stays live online long after the term ends.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">II.</span><span class="details qa__q">Who is eligible for free support?</span><span class="toggle"></span></summary>
+      <div class="qa__body">Free support extends to instructors teaching at postsecondary institutions accredited in the United States and Canada. There are no eligibility restrictions based on discipline.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">III.</span><span class="details qa__q">What do students learn?</span><span class="toggle"></span></summary>
+      <div class="qa__body"><ul><li>Research and source evaluation</li><li>Writing for a public audience</li><li>Collaboration with peers and the broader Wikipedia community</li><li>AI literacy and a critical eye for verifiable information</li></ul></div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">IV.</span><span class="details qa__q">How long should the assignment run?</span><span class="toggle"></span></summary>
+      <div class="qa__body">We recommend a six- to twelve-week timeline for most courses. Medical writing courses contributing through WikiProject Medicine's review process are exempt from that minimum.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">V.</span><span class="details qa__q">What class size works best?</span><span class="toggle"></span></summary>
+      <div class="qa__body">Individual article assignments work well for classes under 40 students. Pairs or groups for 40–100. We don't recommend the assignment for classes over 100 unless adapted into a structured group project.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">VI.</span><span class="details qa__q">Can students use AI tools?</span><span class="toggle"></span></summary>
+      <div class="qa__body">No. Students may not use AI tools to write or edit their text for Wikipedia. The goal of the assignment is for students to draft their own contributions to improve public access to high-quality, verifiable information.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">VII.</span><span class="details qa__q">How does my student protect their privacy?</span><span class="toggle"></span></summary>
+      <div class="qa__body">Students choose their own Wikipedia usernames and are not required to use their real names. We provide guidance on selecting an appropriate username during training.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">VIII.</span><span class="details qa__q">Can I run the assignment in multiple courses?</span><span class="toggle"></span></summary>
+      <div class="qa__body">Yes. Once approved, you can run the assignment in as many courses as you like, each term, with our continued support.</div>
+    </details>
+    <details class="qa">
+      <summary><span class="details qa__num">IX.</span><span class="details qa__q">How do I apply?</span><span class="toggle"></span></summary>
+      <div class="qa__body">Visit the <a href="https://dashboard.wikiedu.org/?teach">Wiki Education Dashboard</a> to create your course page. Our staff reviews applications on a rolling basis and most instructors hear back within a few business days.</div>
+    </details>
+  </div>
+</section>
+
+<section class="act" id="interest">
+  <div class="wrap wrap--mid">
+    <div class="act__opener">
+      <div class="act__num">Express interest</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">Tell us About Your Course</h2>
+      <p class="act__sub">Share a few details. We'll send resources tailored to your subject and term — no commitment.</p>
+    </div>
+
+    <div class="form-frame">
+      <form class="form-grid">
+        <div class="field"><label>Name *</label><input type="text" required></div>
+        <div class="field"><label>Email *</label><input type="email" required></div>
+        <div class="field"><label>Institution *</label><input type="text" required></div>
+        <div class="field"><label>Subject *</label><input type="text" required></div>
+        <div class="field"><label>Term</label>
+          <select><option>Summer 2026</option><option>Fall 2026</option><option>Spring 2027</option><option>Unsure</option></select>
+        </div>
+        <div class="field"><label>How did you hear about us?</label><input type="text"></div>
+        <div class="field field--full"><label>Anything else?</label><textarea></textarea></div>
+        <div class="field field--full"><button type="submit" class="btn btn--ink">Send my information →</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="act">
+  <div class="wrap">
+    <div class="act__opener">
+      <div class="act__num">From the library</div>
+      <div class="chevrons"><span></span><span></span><span></span></div>
+      <h2 class="act__title">Recent Programs</h2>
+    </div>
+
+    <div class="programs">
+      <article class="program">
+        <div class="program__num">i</div>
+        <div>
+          <div class="program__date">May 2026</div>
+          <h3><a href="#">Earth Day brought us closer to a more complete record of biodiversity</a></h3>
+        </div>
+      </article>
+      <article class="program">
+        <div class="program__num">ii</div>
+        <div>
+          <div class="program__date">May 2026</div>
+          <h3><a href="#">Wikipedia made my depressing class more rigorous</a></h3>
+        </div>
+      </article>
+      <article class="program">
+        <div class="program__num">iii</div>
+        <div>
+          <div class="program__date">April 2026</div>
+          <h3><a href="#">From local history to public knowledge: 250 by 2026 Wiki Scholars</a></h3>
+        </div>
+      </article>
+      <article class="program">
+        <div class="program__num">iv</div>
+        <div>
+          <div class="program__date">April 2026</div>
+          <h3><a href="#">UW senior writes new Wikipedia article on oil spill in Nigeria</a></h3>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="theatre">
+  <div class="wrap">
+    <div class="theatre__top">
+      <div>
+        <div class="theatre__brand">Wiki <em>·</em> Education</div>
+        <p style="color: rgba(244,236,214,.7); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; max-width: 380px; margin: 0;">341 Broadway Street, Suite 408 &nbsp;·&nbsp; Chico, California 95928. A 501(c)(3) nonprofit. Content licensed CC BY-SA 4.0 unless otherwise noted.</p>
+      </div>
+      <div><h4>Program</h4><ul><li><a href="#">Teach</a></li><li><a href="#">Learn</a></li><li><a href="#">Partnerships</a></li><li><a href="#">News</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="#">Mission</a></li><li><a href="#">Staff</a></li><li><a href="#">Financials</a></li><li><a href="#">Careers</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="#">Contact</a></li><li><a href="#">Donate</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+    </div>
+    <div class="theatre__legal">
+      <span>© Wiki Education · MMXXVI</span>
+      <span>Composed with care</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

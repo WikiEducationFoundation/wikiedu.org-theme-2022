@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teach with Wikipedia — Wiki Education (v3: Syllabus)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #686FAF;
+    --primary-dark: #4a5191;
+    --secondary: #60AB91;
+    --secondary-dark: #468973;
+    --accent: #E06847;
+    --accent-dark: #b94e30;
+    --ink: #1c1d2b;
+    --muted: #5e6173;
+    --rule: #c9c3b1;
+    --rule-soft: #e3ddca;
+    --paper: #f4efe1;
+    --paper-2: #ece6d3;
+    --paper-3: #fbf8ee;
+    --highlight: #f7e9a2;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Newsreader', serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* paper grid texture */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(to right, rgba(201,195,177,.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(201,195,177,.18) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  body > * { position: relative; z-index: 1; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "ss01" on; }
+  .sans { font-family: 'Inter', sans-serif; }
+  a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1.5px; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  a:hover { color: var(--accent-dark); text-decoration-color: currentColor; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 36px; }
+  .wrap--narrow { max-width: 780px; }
+
+  .btn {
+    display: inline-block; padding: 14px 24px;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+    text-decoration: none; border: 2px solid var(--ink);
+    transition: transform .1s, background .15s, color .15s;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .btn--accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn--accent:hover { background: var(--ink); border-color: var(--ink); }
+  .btn--ghost { background: var(--paper); color: var(--ink); }
+
+  /* Course header — looks like a syllabus header */
+  .syllabus-head {
+    border-bottom: 3px double var(--ink);
+    padding: 36px 0 28px;
+    background: var(--paper-3);
+  }
+  .syllabus-head__top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 13px; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--muted); flex-wrap: wrap; gap: 12px;
+  }
+  .syllabus-head__inst {
+    font-family: 'Newsreader', serif; font-size: 17px; font-weight: 600;
+    color: var(--ink); letter-spacing: 0; text-transform: none;
+  }
+  .syllabus-head__inst em { font-style: italic; color: var(--accent); }
+  .syllabus-head__title {
+    margin-top: 22px;
+    display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: end;
+  }
+  @media (max-width: 700px) { .syllabus-head__title { grid-template-columns: 1fr; gap: 12px; } }
+  .syllabus-head__code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px; font-weight: 700;
+    color: var(--accent); line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .syllabus-head__name {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 600; line-height: 1.05; margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .syllabus-head__name em { font-style: italic; color: var(--primary); }
+  .syllabus-head__meta {
+    margin-top: 24px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    border-top: 1px solid var(--rule); padding-top: 16px;
+  }
+  @media (max-width: 700px) { .syllabus-head__meta { grid-template-columns: repeat(2, 1fr); } }
+  .meta__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+  }
+  .meta__value {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+    margin-top: 4px;
+  }
+  .meta__value .ok { color: var(--secondary-dark); }
+  .meta__value .cost { font-family: 'JetBrains Mono', monospace; }
+
+  /* Overview block — a "course description" */
+  .overview { padding: 56px 0 24px; }
+  .overview__grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+  @media (max-width: 800px) { .overview__grid { grid-template-columns: 1fr; gap: 12px; } }
+  .overview__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; padding-top: 6px;
+  }
+  .overview__body p { font-size: 21px; line-height: 1.5; margin: 0 0 18px; }
+  .overview__body p:first-child { font-size: 24px; }
+  .overview__body p strong { background: var(--highlight); padding: 0 4px; }
+
+  /* CTA card */
+  .cta-block {
+    margin: 16px 0 64px;
+    background: var(--ink); color: var(--paper);
+    padding: 36px; display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: center;
+  }
+  @media (max-width: 700px) { .cta-block { grid-template-columns: 1fr; } }
+  .cta-block .mono { color: var(--accent); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+  .cta-block h3 { font-family: 'Newsreader', serif; font-size: 28px; margin: 8px 0 6px; font-weight: 600; }
+  .cta-block p { margin: 0; color: #d6d0bd; }
+  .cta-block .btn { background: var(--accent); border-color: var(--accent); }
+  .cta-block .btn:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); box-shadow: 4px 4px 0 var(--accent); }
+
+  /* Section primitives */
+  .section { padding: 64px 0; border-top: 1px solid var(--rule); }
+  .section__head { display: grid; grid-template-columns: 200px 1fr; gap: 48px; margin-bottom: 40px; }
+  @media (max-width: 800px) { .section__head { grid-template-columns: 1fr; gap: 12px; } }
+  .section__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; padding-top: 6px;
+  }
+  .section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(32px, 3.8vw, 44px); line-height: 1.05;
+    margin: 0 0 14px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .section h2 em { font-style: italic; color: var(--primary); }
+  .section__sub { font-size: 19px; color: var(--muted); margin: 0; max-width: 640px; }
+
+  /* Modules (how it works) */
+  .modules { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--ink); }
+  .module {
+    display: grid; grid-template-columns: 110px 1fr 200px;
+    gap: 36px; align-items: start;
+    padding: 28px 0; border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 800px) { .module { grid-template-columns: 80px 1fr; } .module__week { grid-column: span 2; } }
+  .module__num {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    letter-spacing: .1em; color: var(--accent); font-weight: 700;
+    padding-top: 6px;
+  }
+  .module__body h3 { font-family: 'Newsreader', serif; font-size: 26px; margin: 0 0 8px; font-weight: 600; letter-spacing: -0.005em; }
+  .module__body p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--muted); }
+  .module__week {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    letter-spacing: .05em; color: var(--ink); padding-top: 8px;
+    border-left: 2px solid var(--rule); padding-left: 18px;
+  }
+  .module__week strong { color: var(--accent); font-weight: 700; }
+
+  /* Lecture preview (video) — styled as a "course video" with a chalkboard frame */
+  .preview {
+    margin: 16px 0 8px;
+    background: var(--paper-3);
+    border: 1px solid var(--rule);
+    padding: 28px;
+  }
+  .preview__head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 18px; gap: 16px; flex-wrap: wrap;
+  }
+  .preview__label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .preview h3 { font-family: 'Newsreader', serif; font-size: 24px; margin: 4px 0 0; font-weight: 600; }
+  .preview__meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+  .preview__frame {
+    aspect-ratio: 16 / 9; background: var(--ink); position: relative;
+    border: 1px solid var(--rule);
+  }
+  .preview__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* Learning outcomes — checklist style */
+  .outcomes {
+    background: var(--paper-3); border: 1px solid var(--rule);
+    padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 36px;
+  }
+  @media (max-width: 700px) { .outcomes { grid-template-columns: 1fr; padding: 28px 24px; } }
+  .outcome { display: flex; gap: 14px; align-items: flex-start; }
+  .outcome__box {
+    flex-shrink: 0; width: 22px; height: 22px;
+    border: 2px solid var(--ink); position: relative; margin-top: 4px;
+    background: var(--paper);
+  }
+  .outcome__box::after {
+    content: "✓"; position: absolute; inset: -6px -2px 0 0;
+    font-family: 'Newsreader', serif; font-size: 24px; font-weight: 700; color: var(--accent);
+  }
+  .outcome p { margin: 0; font-size: 17px; line-height: 1.45; }
+  .outcome strong { display: block; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); margin-bottom: 2px; }
+
+  /* Grade report (stats) */
+  .gradebook {
+    background: var(--paper-3); border: 2px solid var(--ink);
+    padding: 0;
+  }
+  .gradebook__head {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    padding: 14px 28px; background: var(--ink); color: var(--paper);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
+  }
+  @media (max-width: 600px) { .gradebook__head { grid-template-columns: 2fr 1fr; } .gradebook__head span:last-child { display: none; } }
+  .gradebook__row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    padding: 22px 28px; border-bottom: 1px solid var(--rule);
+    align-items: center; gap: 16px;
+  }
+  @media (max-width: 600px) { .gradebook__row { grid-template-columns: 2fr 1fr; } .gradebook__row .gradebook__bar { display: none; } }
+  .gradebook__row:last-child { border-bottom: none; }
+  .gradebook__row strong { font-family: 'Newsreader', serif; font-size: 19px; font-weight: 600; }
+  .gradebook__score { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .gradebook__bar { height: 10px; background: var(--paper-2); position: relative; border: 1px solid var(--rule); }
+  .gradebook__bar > span { display: block; height: 100%; background: var(--accent); }
+  .gradebook__foot { padding: 16px 28px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); border-top: 2px dashed var(--rule); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* Schedule (webinars) — looks like a course calendar */
+  .calendar { border-top: 2px solid var(--ink); }
+  .cal-row {
+    display: grid; grid-template-columns: 120px 1fr auto;
+    gap: 28px; padding: 22px 0; border-bottom: 1px solid var(--rule);
+    align-items: center;
+  }
+  @media (max-width: 700px) { .cal-row { grid-template-columns: 1fr; gap: 6px; } }
+  .cal-row__date { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; }
+  .cal-row__date span { display: block; font-size: 11px; color: var(--accent); letter-spacing: .15em; text-transform: uppercase; }
+  .cal-row__title { font-family: 'Newsreader', serif; font-size: 20px; font-weight: 600; }
+  .cal-row__title small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: .04em; margin-top: 4px; text-transform: none; }
+  .cal-row__cta a { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; }
+
+  /* Peer reviews (testimonials) */
+  .reviews { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 800px) { .reviews { grid-template-columns: 1fr; } }
+  .review {
+    background: var(--paper-3); border: 1px solid var(--rule);
+    padding: 28px; position: relative;
+  }
+  .review::before {
+    content: ""; position: absolute; top: -1px; left: -1px;
+    width: 28px; height: 28px; background: var(--accent);
+  }
+  .review__stamp {
+    position: absolute; top: 0; left: 0; width: 28px; height: 28px;
+    color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .review__head { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-left: 36px; }
+  .review__head strong { color: var(--ink); }
+  .review p {
+    font-family: 'Newsreader', serif; font-size: 19px; line-height: 1.45;
+    margin: 0 0 18px; font-style: italic;
+  }
+  .review__attr { display: flex; justify-content: space-between; gap: 16px; font-family: 'Inter', sans-serif; flex-wrap: wrap; }
+  .review__attr strong { font-weight: 600; font-size: 15px; }
+  .review__attr span { font-size: 14px; color: var(--muted); }
+
+  /* FAQ / Office hours */
+  details.fq {
+    border-bottom: 1px solid var(--rule);
+    padding: 0;
+  }
+  details.fq:first-of-type { border-top: 2px solid var(--ink); }
+  details.fq > summary {
+    cursor: pointer; list-style: none;
+    padding: 22px 0; display: grid; grid-template-columns: 60px 1fr auto; gap: 24px;
+    align-items: center;
+  }
+  details.fq > summary::-webkit-details-marker { display: none; }
+  details.fq .fq__num {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--accent); font-weight: 700;
+  }
+  details.fq .fq__q {
+    font-family: 'Newsreader', serif; font-size: 21px; font-weight: 600;
+  }
+  details.fq .fq__toggle {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    color: var(--ink); font-weight: 700;
+    border: 1.5px solid var(--ink); padding: 4px 10px;
+    transition: background .15s, color .15s;
+  }
+  details.fq[open] .fq__toggle { background: var(--ink); color: var(--paper); }
+  details.fq[open] .fq__toggle::after { content: " close"; }
+  details.fq:not([open]) .fq__toggle::after { content: " open"; }
+  .fq__a { padding: 0 0 24px 84px; max-width: 760px; font-size: 17px; color: var(--ink); }
+  .fq__a ul { padding-left: 1.2em; margin: 8px 0; }
+
+  /* Course staff */
+  .staff {
+    background: var(--paper-3); border: 1px solid var(--rule);
+    padding: 36px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
+  }
+  @media (max-width: 700px) { .staff { grid-template-columns: 1fr; padding: 28px 24px; } }
+  .staff__head { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .staff h3 { font-family: 'Newsreader', serif; font-size: 26px; margin: 6px 0 12px; font-weight: 600; }
+  .staff p { font-size: 17px; line-height: 1.5; color: var(--muted); margin: 0 0 12px; }
+  .staff dl { margin: 0; display: grid; grid-template-columns: 100px 1fr; gap: 8px 16px; font-size: 14px; font-family: 'JetBrains Mono', monospace; }
+  .staff dt { color: var(--muted); }
+  .staff dd { margin: 0; }
+  .staff dd a { font-family: 'JetBrains Mono', monospace; }
+
+  /* Supplemental readings (recent blog posts) */
+  .readings { border-top: 2px solid var(--ink); }
+  .reading {
+    display: grid; grid-template-columns: 110px 1fr 160px;
+    gap: 28px; padding: 22px 0; border-bottom: 1px solid var(--rule);
+    align-items: center;
+  }
+  @media (max-width: 800px) { .reading { grid-template-columns: 100px 1fr; } .reading__type { grid-column: 1 / -1; } }
+  .reading__num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 700; }
+  .reading__title { font-family: 'Newsreader', serif; font-size: 21px; font-weight: 600; }
+  .reading__title a { text-decoration: none; }
+  .reading__title a:hover { color: var(--accent-dark); }
+  .reading__type { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+
+  /* Interest form — looks like a course-registration form */
+  .registration {
+    background: var(--paper-3); border: 2px solid var(--ink);
+    padding: 36px;
+  }
+  .registration__head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline; padding-bottom: 14px; margin-bottom: 28px; border-bottom: 1px solid var(--rule); }
+  .registration__head h3 { font-family: 'Newsreader', serif; font-size: 26px; margin: 0; font-weight: 600; }
+  .registration__head .mono { color: var(--accent); font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; }
+  .registration form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 600px) { .registration form { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field--full { grid-column: 1 / -1; }
+  .field label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); font-weight: 700; }
+  .field label .req { color: var(--accent); }
+  .field input, .field select, .field textarea {
+    font: 16px/1.4 'Newsreader', serif; padding: 12px 14px;
+    border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .field textarea { min-height: 88px; resize: vertical; font-family: 'Newsreader', serif; }
+  .registration__note { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 14px; }
+
+  /* Footer / colophon */
+  footer.colo {
+    margin-top: 0; padding: 48px 0 32px;
+    background: var(--ink); color: var(--paper);
+    border-top: 4px double var(--accent);
+  }
+  footer.colo a { color: var(--paper); text-decoration-color: var(--accent); }
+  footer.colo a:hover { color: var(--accent); }
+  .colo__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 28px; border-bottom: 1px dashed rgba(244,239,225,.25); }
+  @media (max-width: 800px) { .colo__grid { grid-template-columns: 1fr 1fr; } }
+  .colo h4 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; font-weight: 700; }
+  .colo ul { list-style: none; padding: 0; margin: 0; }
+  .colo li { margin-bottom: 8px; font-size: 15px; }
+  .colo__brand { font-family: 'Newsreader', serif; font-weight: 700; font-size: 24px; color: var(--paper); margin-bottom: 6px; }
+  .colo__brand em { color: var(--accent); font-style: italic; }
+  .colo__legal { padding-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #c4bea9; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* Top sticky nav bar */
+  .toc-bar {
+    position: sticky; top: 0; z-index: 50; background: var(--paper-3);
+    border-bottom: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .toc-bar__inner { display: flex; gap: 0; align-items: center; overflow-x: auto; padding: 0; }
+  .toc-bar a { padding: 14px 18px; color: var(--ink); text-decoration: none; border-right: 1px solid var(--rule); white-space: nowrap; font-weight: 600; }
+  .toc-bar a:first-child { border-left: 1px solid var(--rule); color: var(--accent); }
+  .toc-bar a:hover { background: var(--paper-2); color: var(--accent-dark); }
+  .toc-bar__cta { margin-left: auto; padding: 8px 16px; flex-shrink: 0; }
+  .toc-bar__cta .btn { padding: 8px 16px; font-size: 12px; letter-spacing: .1em; }
+</style>
+</head>
+<body>
+
+<header class="syllabus-head">
+  <div class="wrap">
+    <div class="syllabus-head__top">
+      <div class="syllabus-head__inst">Wiki <em>Education</em> · Higher-education program</div>
+      <div>Course syllabus · Spring 2026 edition</div>
+    </div>
+    <div class="syllabus-head__title">
+      <div class="syllabus-head__code">TWWP<br>101</div>
+      <h1 class="syllabus-head__name">Teach with Wikipedia: a high-impact, <em>real-world</em> assignment for your course.</h1>
+    </div>
+    <div class="syllabus-head__meta">
+      <div>
+        <div class="meta__label">Term</div>
+        <div class="meta__value">Summer 2026</div>
+      </div>
+      <div>
+        <div class="meta__label">Enrollment</div>
+        <div class="meta__value"><span class="ok">● Open</span> · Rolling</div>
+      </div>
+      <div>
+        <div class="meta__label">Eligibility</div>
+        <div class="meta__value">U.S. &amp; Canadian postsecondary faculty</div>
+      </div>
+      <div>
+        <div class="meta__label">Tuition</div>
+        <div class="meta__value cost">$0.00</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar">
+  <div class="wrap toc-bar__inner">
+    <a href="#description">§ Course description</a>
+    <a href="#outcomes">§ Outcomes</a>
+    <a href="#modules">§ Modules</a>
+    <a href="#evaluation">§ Evaluation</a>
+    <a href="#staff">§ Staff</a>
+    <a href="#schedule">§ Office hours</a>
+    <a href="#faq">§ FAQ</a>
+    <span class="toc-bar__cta"><a class="btn" href="https://dashboard.wikiedu.org/?teach">Enroll →</a></span>
+  </div>
+</nav>
+
+<section class="overview" id="description">
+  <div class="wrap">
+    <div class="overview__grid">
+      <div class="overview__label">§ 00 — Course description</div>
+      <div class="overview__body">
+        <p>The <strong>Wikipedia assignment</strong> brings your students' expertise into one of the most-read information resources on the internet. Students improve articles in your subject area and gain skills in research, source evaluation, writing for a public audience, collaboration, and AI literacy.</p>
+        <p>Wiki Education's support is free for instructors and their students at postsecondary institutions accredited in the U.S. and Canada, funded by generous donations. We're currently accepting Summer 2026 course pages on a rolling basis.</p>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <div>
+        <div class="mono">→ Course action</div>
+        <h3>Create your course page and apply.</h3>
+        <p>Most instructors are approved within a few business days, and our staff walks you through every step.</p>
+      </div>
+      <a class="btn" href="https://dashboard.wikiedu.org/?teach">Enroll for Summer 2026 →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="outcomes">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 01 — Learning outcomes</div>
+      <div>
+        <h2>By term's end, your students <em>will be able to:</em></h2>
+        <p class="section__sub">The Wikipedia assignment cultivates a specific set of skills that transfer to research, professional writing, and digital citizenship.</p>
+      </div>
+    </div>
+
+    <div class="outcomes">
+      <div class="outcome"><div class="outcome__box"></div><p><strong>LO 1 · Research</strong>Locate, weigh, and synthesize credible sources on a contested topic.</p></div>
+      <div class="outcome"><div class="outcome__box"></div><p><strong>LO 2 · Source evaluation</strong>Identify reliable sources and reason about their bias and authority.</p></div>
+      <div class="outcome"><div class="outcome__box"></div><p><strong>LO 3 · Public writing</strong>Communicate complex ideas in neutral, accessible prose for a general audience.</p></div>
+      <div class="outcome"><div class="outcome__box"></div><p><strong>LO 4 · Collaboration</strong>Work productively with peers and the broader Wikipedia editor community.</p></div>
+      <div class="outcome"><div class="outcome__box"></div><p><strong>LO 5 · AI literacy</strong>Recognize what verifiable information is — and why students write it themselves.</p></div>
+      <div class="outcome"><div class="outcome__box"></div><p><strong>LO 6 · Digital citizenship</strong>Contribute responsibly to a shared knowledge commons read by millions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="modules">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 02 — Course modules</div>
+      <div>
+        <h2>How it <em>works</em>, week by week.</h2>
+        <p class="section__sub">A typical six-to-twelve-week deployment. Medical-writing courses contributing through WikiProject Medicine's review process are exempt from the minimum.</p>
+      </div>
+    </div>
+
+    <div class="preview">
+      <div class="preview__head">
+        <div>
+          <div class="preview__label">Lecture preview · Required</div>
+          <h3>The Wikipedia assignment, in four minutes.</h3>
+        </div>
+        <div class="preview__meta">04:11 · YouTube</div>
+      </div>
+      <div class="preview__frame">
+        <iframe src="https://www.youtube.com/embed/5169hRHZqIk" title="Wiki Education — the Wikipedia assignment, in four minutes" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="module">
+        <div class="module__num">M 01</div>
+        <div class="module__body">
+          <h3>Create your course page</h3>
+          <p>Set up your course on the Wiki Education Dashboard. We'll match you with sample syllabi and timelines from your discipline.</p>
+        </div>
+        <div class="module__week"><strong>Pre-term</strong><br>~ 1 hour</div>
+      </div>
+      <div class="module">
+        <div class="module__num">M 02</div>
+        <div class="module__body">
+          <h3>Students complete training</h3>
+          <p>Self-paced modules teach Wikipedia policies, sourcing, and editing mechanics. No class time required.</p>
+        </div>
+        <div class="module__week"><strong>Weeks 1–2</strong><br>~ 3 hrs / student</div>
+      </div>
+      <div class="module">
+        <div class="module__num">M 03</div>
+        <div class="module__body">
+          <h3>Pick articles &amp; evaluate sources</h3>
+          <p>Students choose articles within your subject area, perform source evaluation, and post initial bibliographies.</p>
+        </div>
+        <div class="module__week"><strong>Weeks 3–5</strong><br>Peer + staff review</div>
+      </div>
+      <div class="module">
+        <div class="module__num">M 04</div>
+        <div class="module__body">
+          <h3>Draft &amp; revise — without AI</h3>
+          <p>Students draft contributions in a sandbox. They may not use AI tools to write or edit their text for Wikipedia.</p>
+        </div>
+        <div class="module__week"><strong>Weeks 6–9</strong><br>2 revision cycles</div>
+      </div>
+      <div class="module">
+        <div class="module__num">M 05</div>
+        <div class="module__body">
+          <h3>Publish to Wikipedia</h3>
+          <p>Contributions go live, get peer-reviewed by the Wikipedia community, and remain online indefinitely.</p>
+        </div>
+        <div class="module__week"><strong>Week 10</strong><br>Public release</div>
+      </div>
+      <div class="module">
+        <div class="module__num">M 06</div>
+        <div class="module__body">
+          <h3>Reflect &amp; assess</h3>
+          <p>Dashboard reports surface pageviews, edits, and citations added. Students see their public impact in real time.</p>
+        </div>
+        <div class="module__week"><strong>Weeks 11–12</strong><br>Course wrap-up</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="evaluation">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 03 — Evaluation &amp; impact</div>
+      <div>
+        <h2>The grade report, <em>from the field.</em></h2>
+        <p class="section__sub">Reported instructor agreement that the Wikipedia assignment helped students develop the named skill. Source: Wiki Education faculty survey, 2024–25.</p>
+      </div>
+    </div>
+
+    <div class="gradebook">
+      <div class="gradebook__head">
+        <span>Outcome</span>
+        <span>Distribution</span>
+        <span>Agreement</span>
+      </div>
+      <div class="gradebook__row">
+        <strong>Digital &amp; media literacy</strong>
+        <div class="gradebook__bar"><span style="width: 97%;"></span></div>
+        <div class="gradebook__score">97%</div>
+      </div>
+      <div class="gradebook__row">
+        <strong>Digital citizenship habits</strong>
+        <div class="gradebook__bar"><span style="width: 96%;"></span></div>
+        <div class="gradebook__score">96%</div>
+      </div>
+      <div class="gradebook__row">
+        <strong>Research skills</strong>
+        <div class="gradebook__bar"><span style="width: 93%;"></span></div>
+        <div class="gradebook__score">93%</div>
+      </div>
+      <div class="gradebook__row">
+        <strong>Social &amp; cultural awareness</strong>
+        <div class="gradebook__bar"><span style="width: 77%;"></span></div>
+        <div class="gradebook__score">77%</div>
+      </div>
+      <div class="gradebook__foot">
+        <span>Source: Wiki Education faculty survey · 2024–25 cohort</span>
+        <span><a href="https://dashboard.wikiedu.org/faq/">View peer-reviewed literature ↗</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 04 — Peer reviews</div>
+      <div>
+        <h2>What other instructors <em>have said.</em></h2>
+        <p class="section__sub">Faculty who've run the assignment. A few of thousands.</p>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <div class="review">
+        <div class="review__stamp">5★</div>
+        <div class="review__head">Review #2418 · <strong>History</strong> · Summer course</div>
+        <p>"Students' Wikipedia pages showed me that they achieved everything that a traditional research paper is supposed to do — and more."</p>
+        <div class="review__attr"><strong>Sarah Lirley</strong><span>Columbia College</span></div>
+      </div>
+      <div class="review">
+        <div class="review__stamp">5★</div>
+        <div class="review__head">Review #2417 · <strong>Middle East Studies</strong> · Fall course</div>
+        <p>"Writing for Wikipedia has added intellectual substance and verve to my courses, while giving me and my students a sense of accomplishment."</p>
+        <div class="review__attr"><strong>Heather Sharkey</strong><span>University of Pennsylvania</span></div>
+      </div>
+      <div class="review">
+        <div class="review__stamp">5★</div>
+        <div class="review__head">Review #2402 · <strong>Psychology</strong> · Quarter course</div>
+        <p>"By the end of the quarter, they realize that their work has been affecting people — something that rarely happens with a standard term paper."</p>
+        <div class="review__attr"><strong>Ben Karney</strong><span>UCLA</span></div>
+      </div>
+      <div class="review">
+        <div class="review__stamp">5★</div>
+        <div class="review__head">Review #2389 · <strong>History</strong> · Semester course</div>
+        <p>"The Wikipedia assignment is the closest thing to professional academic work that I can offer my undergraduates."</p>
+        <div class="review__attr"><strong>Shira Klein</strong><span>Chapman University</span></div>
+      </div>
+    </div>
+    <p style="margin-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 13px;">▸ <a href="https://wikiedu.org/blog/category/instructor-stories/">View all reviews ↗</a></p>
+  </div>
+</section>
+
+<section class="section" id="staff">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 05 — Course staff</div>
+      <div>
+        <h2>Wiki Education is your <em>co-instructor.</em></h2>
+        <p class="section__sub">Our staff has been supporting the Wikipedia Education Program in the U.S. and Canada since 2010, helping thousands of higher-ed instructors run Wikipedia assignments.</p>
+      </div>
+    </div>
+
+    <div class="staff">
+      <div>
+        <div class="staff__head">Lead support</div>
+        <h3>The Wiki Education team</h3>
+        <p>You'll be paired with a staff member who knows your discipline. We've collected the experiences of thousands of instructors and built training, sample syllabi, and tooling around what actually works in a real classroom.</p>
+        <dl>
+          <dt>Office</dt><dd>341 Broadway St #408, Chico CA</dd>
+          <dt>Contact</dt><dd><a href="mailto:studentprogram@wikiedu.org">studentprogram@wikiedu.org</a></dd>
+          <dt>Apply</dt><dd><a href="https://dashboard.wikiedu.org/?teach">dashboard.wikiedu.org</a></dd>
+        </dl>
+      </div>
+      <div>
+        <div class="staff__head">Office hours · Information sessions</div>
+        <h3>Drop in before you decide.</h3>
+        <p>Webinars are short, low-pressure, and let you see the dashboard and ask questions specific to your discipline.</p>
+        <div class="calendar" id="schedule">
+          <div class="cal-row">
+            <div class="cal-row__date"><span>Tue</span>May 26 · 2026</div>
+            <div class="cal-row__title">Health Professions information session<small>10am PT / 1pm ET · 60 min · Zoom</small></div>
+            <div class="cal-row__cta"><a href="#">RSVP →</a></div>
+          </div>
+          <div class="cal-row">
+            <div class="cal-row__date"><span>Mon</span>Jun 8 · 2026</div>
+            <div class="cal-row__title">Health Professions information session<small>9am PT / 12pm ET · 60 min · Zoom</small></div>
+            <div class="cal-row__cta"><a href="#">RSVP →</a></div>
+          </div>
+        </div>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); margin: 14px 0 0;">▸ More all-disciplines sessions to be posted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 06 — Frequently asked</div>
+      <div>
+        <h2>Questions, <em>answered.</em></h2>
+        <p class="section__sub">Still wondering about something? Email <a href="mailto:studentprogram@wikiedu.org">studentprogram@wikiedu.org</a>.</p>
+      </div>
+    </div>
+
+    <div>
+      <details class="fq">
+        <summary><span class="fq__num">Q.01</span><span class="fq__q">What is the Wikipedia assignment?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">A structured project in which your students improve Wikipedia articles in your course's subject area. They learn to navigate Wikipedia's policies, evaluate sources, and write for a public audience — and their work stays live online long after the term ends.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.02</span><span class="fq__q">Who is eligible for free support?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">Free support extends to instructors teaching at postsecondary institutions accredited in the United States and Canada. There are no eligibility restrictions based on discipline.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.03</span><span class="fq__q">What do students learn?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a"><ul>
+          <li>Research and source evaluation</li>
+          <li>Writing for a public audience</li>
+          <li>Collaboration with peers and the broader Wikipedia community</li>
+          <li>AI literacy and a critical eye for verifiable information</li>
+        </ul></div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.04</span><span class="fq__q">How long should the assignment run?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">We recommend a six- to twelve-week timeline for most courses. Medical writing courses contributing through WikiProject Medicine's review process are exempt from that minimum.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.05</span><span class="fq__q">What class size works best?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">Individual article assignments work well for classes under 40 students. Pairs or groups work for classes of 40–100. We don't recommend the assignment for classes over 100 unless adapted into a structured group project.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.06</span><span class="fq__q">Can students use AI tools?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">No. Students may not use AI tools to write or edit their text for Wikipedia. The goal of the assignment is for students to draft their own contributions to improve public access to high-quality, verifiable information.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.07</span><span class="fq__q">How does my student protect their privacy?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">Students choose their own Wikipedia usernames and are not required to use their real names. We provide guidance on selecting an appropriate username during training.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.08</span><span class="fq__q">Can I run the assignment in multiple courses?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">Yes. Once approved, you can run the assignment in as many courses as you like, each term, with our continued support.</div>
+      </details>
+      <details class="fq">
+        <summary><span class="fq__num">Q.09</span><span class="fq__q">How do I apply?</span><span class="fq__toggle">+</span></summary>
+        <div class="fq__a">Visit the <a href="https://dashboard.wikiedu.org/?teach">Wiki Education Dashboard</a> to create your course page. Our staff reviews applications on a rolling basis and most instructors hear back within a few business days.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__num">§ 07 — Supplemental readings</div>
+      <div>
+        <h2>From the blog.</h2>
+        <p class="section__sub">Recent dispatches from participating classrooms.</p>
+      </div>
+    </div>
+
+    <div class="readings">
+      <div class="reading">
+        <div class="reading__num">R.01 · May 2026</div>
+        <div class="reading__title"><a href="#">Earth Day brought us closer to a more complete record of biodiversity</a></div>
+        <div class="reading__type">Field report</div>
+      </div>
+      <div class="reading">
+        <div class="reading__num">R.02 · May 2026</div>
+        <div class="reading__title"><a href="#">Wikipedia made my depressing class more rigorous</a></div>
+        <div class="reading__type">Faculty essay</div>
+      </div>
+      <div class="reading">
+        <div class="reading__num">R.03 · Apr 2026</div>
+        <div class="reading__title"><a href="#">From local history to public knowledge: 250 by 2026 Wiki Scholars</a></div>
+        <div class="reading__type">Program update</div>
+      </div>
+      <div class="reading">
+        <div class="reading__num">R.04 · Apr 2026</div>
+        <div class="reading__title"><a href="#">Change is uncomfortable: from knowledge receivers to producers</a></div>
+        <div class="reading__type">Faculty essay</div>
+      </div>
+      <div class="reading">
+        <div class="reading__num">R.05 · Apr 2026</div>
+        <div class="reading__title"><a href="#">UW senior creates new Wikipedia article on oil spill in Nigeria</a></div>
+        <div class="reading__type">Student work</div>
+      </div>
+    </div>
+    <p style="margin-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 13px;">▸ <a href="#">All supplemental readings ↗</a></p>
+  </div>
+</section>
+
+<section class="section" id="register">
+  <div class="wrap wrap--narrow">
+    <div class="registration">
+      <div class="registration__head">
+        <div>
+          <div class="mono">Form TWWP-1 · Interest declaration</div>
+          <h3>Tell us about your course.</h3>
+        </div>
+        <div class="mono">Optional · No commitment</div>
+      </div>
+      <form>
+        <div class="field"><label>Name <span class="req">*</span></label><input type="text" required></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" required></div>
+        <div class="field"><label>Institution <span class="req">*</span></label><input type="text" required></div>
+        <div class="field"><label>Subject <span class="req">*</span></label><input type="text" required></div>
+        <div class="field"><label>Term</label>
+          <select>
+            <option>Summer 2026</option>
+            <option>Fall 2026</option>
+            <option>Spring 2027</option>
+            <option>I'm not sure yet</option>
+          </select>
+        </div>
+        <div class="field"><label>How did you hear about us?</label><input type="text"></div>
+        <div class="field field--full"><label>Anything else?</label><textarea></textarea></div>
+        <div class="field field--full"><button type="submit" class="btn btn--accent">Submit interest form →</button></div>
+      </form>
+      <p class="registration__note">▸ Free support extends to instructors teaching at postsecondary institutions accredited in the U.S. and Canada.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="colo">
+  <div class="wrap">
+    <div class="colo__grid">
+      <div>
+        <div class="colo__brand">Wiki <em>Education</em></div>
+        <p style="color: #c4bea9; max-width: 360px; font-size: 14px; margin: 0;">341 Broadway Street, Suite 408 · Chico, CA 95928. A 501(c)(3) nonprofit · EIN 81-1610029. Content licensed CC BY-SA 4.0 unless otherwise noted.</p>
+      </div>
+      <div><h4>Program</h4><ul><li><a href="#">Teach</a></li><li><a href="#">Learn</a></li><li><a href="#">Partnerships</a></li><li><a href="#">News</a></li></ul></div>
+      <div><h4>About</h4><ul><li><a href="#">Mission</a></li><li><a href="#">Staff</a></li><li><a href="#">Financials</a></li><li><a href="#">Careers</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="#">Contact</a></li><li><a href="#">Donate</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+    </div>
+    <div class="colo__legal">
+      <span>© Wiki Education Foundation, 2026</span>
+      <span>Compiled · v1.0 · TWWP 101</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
