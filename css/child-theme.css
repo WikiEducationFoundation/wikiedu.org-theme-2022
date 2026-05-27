@@ -17382,13 +17382,13 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
   font-family: "Source Sans Pro", sans-serif;
   line-height: 1.55;
 }
-.page-id-100798 .entry-header {
+.page-id-100798 #full-width-page-wrapper .entry-header {
   display: none;
 }
-.page-id-100798 .site-main {
+.page-id-100798 #full-width-page-wrapper .site-main {
   padding-top: 0;
 }
-.page-id-100798 #content {
+.page-id-100798 #full-width-page-wrapper #content {
   padding-left: 0;
   padding-right: 0;
 }
@@ -18055,7 +18055,9 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
 }
 .page-id-100798 .contact-form .grunion-checkbox-multiple-options {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   margin-top: 8px;
 }

@@ -3059,9 +3059,13 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
     background: $twp-bg;
     overflow-x: hidden;
 
-    .entry-header { display: none; }
-    .site-main { padding-top: 0; }
-    #content { padding-left: 0; padding-right: 0; }
+    // Nested under #full-width-page-wrapper so these beat the theme's
+    // own ID-scoped rules (e.g. `#full-width-page-wrapper .entry-header`).
+    #full-width-page-wrapper {
+        .entry-header { display: none; }
+        .site-main { padding-top: 0; }
+        #content { padding-left: 0; padding-right: 0; }
+    }
     .entry-content { margin-top: 0; }
 
     // Base type
@@ -3529,7 +3533,9 @@ ported from per-page CSS from the deprecated 'CSS Plus' plugin
         .jetpack-field-multiple__fieldset { border: 0; margin: 0; padding: 0; }
         .grunion-checkbox-multiple-options {
             display: flex;
+            flex-direction: row; // override Jetpack grunion.css (flex-direction: column)
             flex-wrap: wrap;
+            align-items: center;
             gap: 10px;
             margin-top: 8px;
         }
